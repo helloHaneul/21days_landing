@@ -6,7 +6,7 @@
 import React from 'react';
 import { Apple, Play, CheckCircle2, Timer, Coins, TrendingUp, Star } from 'lucide-react';
 import { motion } from 'motion/react';
-import videoSrc from '../public/video.mp4';
+import videoSrc from './assets/video.mp4';
 
 export default function App() {
   return (
