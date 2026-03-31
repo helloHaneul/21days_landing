@@ -6,6 +6,7 @@
 import React from 'react';
 import { Apple, Play, CheckCircle2, Timer, Coins, TrendingUp, Star } from 'lucide-react';
 import { motion } from 'motion/react';
+import videoSrc from '../public/video.mp4';
 
 export default function App() {
   return (
@@ -80,7 +81,7 @@ export default function App() {
                           muted 
                           playsInline
                         >
-                          <source src="/video.mp4" type="video/mp4" />
+                          <source src={videoSrc} type="video/mp4" />
                           Your browser does not support the video tag.
                         </video>
                     </div>
