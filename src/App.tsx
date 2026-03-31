@@ -35,7 +35,8 @@ export default function App() {
               >
                 말 안 듣는 우리 아이,<br/>
                 <span className="text-orange-500">혼내지 않고</span><br/>
-                스스로 움직이게 만드는 비밀
+                스스로 움직이게<br/> 
+                만드는 비밀
               </motion.h1>
               <motion.p 
                 initial={{ opacity: 0, y: 20 }}
@@ -44,7 +45,7 @@ export default function App() {
                 className="text-lg md:text-xl text-gray-600 mb-10 max-w-lg leading-relaxed"
               >
                 정답 없는 육아에 지친 부모님들을 위해.<br/>
-                잔소리 대신 따뜻한 칭찬으로, 하루하루 쌓이는 21일의 마법을 경험해 보세요.
+                잔소리 대신 따뜻한 칭찬으로 21일의 마법을 경험해 보세요.
               </motion.p>
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
@@ -79,8 +80,7 @@ export default function App() {
                           muted 
                           playsInline
                         >
-                          {/* TODO: 업로드하신 영상 파일의 경로로 src를 변경해주세요. (예: public 폴더에 영상을 넣고 src="/video.mp4" 로 설정) */}
-                          <source src="public/video.mp4" type="video/mp4" />
+                          <source src="/video.mp4" type="video/mp4" />
                           Your browser does not support the video tag.
                         </video>
                     </div>
