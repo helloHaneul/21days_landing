@@ -60,12 +60,12 @@ export default function App() {
             </div>
             
             {/* Hero Image/Mockup Right side */}
-            <div className="hidden lg:block absolute top-0 right-0 w-1/2 h-full z-10">
+            <div className="w-full lg:w-1/2 flex justify-center lg:justify-end relative z-10">
               <motion.div 
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="relative w-full h-full flex items-center justify-center"
+                className="relative w-full flex items-center justify-center"
               >
                 {/* Mockup Container */}
                 <div className="w-[320px] h-[650px] bg-white rounded-[50px] border-[12px] border-gray-900 shadow-2xl relative overflow-hidden z-20 flex flex-col">
@@ -86,7 +86,7 @@ export default function App() {
                 </div>
                 
                 {/* Decorative background blob */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-orange-400/20 rounded-full mix-blend-multiply filter blur-3xl z-10"></div>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] lg:w-[600px] lg:h-[600px] bg-orange-400/20 rounded-full mix-blend-multiply filter blur-3xl z-10"></div>
               </motion.div>
             </div>
           </div>
