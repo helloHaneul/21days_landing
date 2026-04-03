@@ -310,13 +310,13 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="text-3xl font-extrabold text-orange-500 tracking-tighter">21days</div>
           <div className="flex flex-wrap justify-center gap-8 text-base text-gray-500 font-medium">
-            <a href="#" className="hover:text-gray-900 transition-colors">이용약관</a>
+            <a href="/terms/" className="hover:text-gray-900 transition-colors">이용약관</a>
             <a href="#" className="hover:text-gray-900 transition-colors">개인정보처리방침</a>
-            <a href="#" className="hover:text-gray-900 transition-colors">고객센터</a>
+            <a href="mailto:parentingnow.support@gmail.com" className="hover:text-gray-900 transition-colors">고객센터</a>
             <a href="#" className="hover:text-gray-900 transition-colors">parenting-now</a>
           </div>
           <div className="text-sm text-gray-400 text-center md:text-right">
-            <p className="mb-2">문의: contact@21days.app</p>
+            <p className="mb-2">문의: <a href="mailto:parentingnow.support@gmail.com" className="hover:text-gray-600 transition-colors">parentingnow.support@gmail.com</a></p>
             <p>© 2026 21days. All rights reserved.</p>
           </div>
         </div>
