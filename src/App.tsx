@@ -26,8 +26,8 @@ export default function App() {
       <main>
         {/* Hero Section */}
         <section className="pt-12 pb-20 lg:pt-28 lg:pb-32 overflow-hidden">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-            <div className="lg:w-1/2 pr-8 relative z-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative flex flex-col lg:flex-row items-center">
+            <div className="w-full lg:w-1/2 lg:pr-8 relative z-20 mb-16 lg:mb-0">
               <motion.h1 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
