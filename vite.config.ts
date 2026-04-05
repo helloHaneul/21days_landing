@@ -12,6 +12,7 @@ export default defineConfig(({mode}) => {
         input: {
           main: path.resolve(__dirname, 'index.html'),
           terms: path.resolve(__dirname, 'terms/index.html'),
+          privacy: path.resolve(__dirname, 'privacy/index.html'),
         },
       },
     },
