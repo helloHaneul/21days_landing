@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CheckCircle2, Timer, Coins, TrendingUp, Star } from "lucide-react";
 import { motion } from "motion/react";
 import videoSrc from "./assets/video.mp4";
@@ -253,13 +253,44 @@ const copy = {
   },
 } as const;
 
-const downloadUrl =
-  import.meta.env.VITE_APP_STORE_URL ||
-  import.meta.env.VITE_PLAY_STORE_URL ||
-  import.meta.env.VITE_TESTFLIGHT_URL ||
-  "";
+const downloadLinks = {
+  appStore: import.meta.env.VITE_APP_STORE_URL || "",
+  playStore: import.meta.env.VITE_PLAY_STORE_URL || "",
+  testflight: import.meta.env.VITE_TESTFLIGHT_URL || "",
+};
+
+function getDownloadUrl() {
+  const userAgent = window.navigator.userAgent.toLowerCase();
+  const isAndroid = userAgent.includes("android");
+  const isIos =
+    /iphone|ipad|ipod/.test(userAgent) ||
+    (window.navigator.platform === "MacIntel" &&
+      window.navigator.maxTouchPoints > 1);
+
+  if (isAndroid) {
+    return downloadLinks.playStore;
+  }
+
+  if (isIos) {
+    return downloadLinks.appStore;
+  }
+
+  return (
+    downloadLinks.appStore ||
+    downloadLinks.playStore ||
+    downloadLinks.testflight
+  );
+}
 
 function DownloadModal() {
+  const downloadUrl = getDownloadUrl();
+
+  useEffect(() => {
+    if (downloadUrl) {
+      window.location.replace(downloadUrl);
+    }
+  }, [downloadUrl]);
+
   return (
     <div className='fixed inset-0 z-50 flex items-center justify-center bg-gray-950/60 px-4 py-8 backdrop-blur-sm'>
       <section
@@ -276,44 +307,18 @@ function DownloadModal() {
           ×
         </a>
 
-        {downloadUrl ? (
-          <>
-            <p className='text-sm font-bold text-orange-500 mb-3'>
-              21days 다운로드
-            </p>
-            <h1
-              id='download-title'
-              className='text-3xl sm:text-4xl font-extrabold leading-tight mb-4'
-            >
-              다운로드 링크가 준비됐어요.
-            </h1>
-            <p className='text-gray-600 text-lg leading-relaxed mb-8'>
-              아래 링크로 21days 앱을 만나보세요.
-            </p>
-            {/* TODO: 앱 배포 링크가 확정되면 downloadUrl을 QR 코드로 렌더링한다. */}
-            <a
-              href={downloadUrl}
-              className='inline-flex w-full items-center justify-center rounded-lg bg-gray-900 px-6 py-4 text-base font-bold text-white hover:bg-gray-800 transition-colors'
-            >
-              앱 다운로드하기
-            </a>
-          </>
-        ) : (
-          <>
-            <p className='text-sm font-bold text-orange-500 mb-3'>
-              21days 다운로드
-            </p>
-            <h1
-              id='download-title'
-              className='text-3xl sm:text-4xl font-extrabold leading-tight mb-4'
-            >
-              21days 앱은 곧 다운로드할 수 있어요.
-            </h1>
-            <p className='text-gray-600 text-lg leading-relaxed'>
-              현재 TestFlight 테스트 중입니다.
-            </p>
-          </>
-        )}
+        <p className='text-sm font-bold text-orange-500 mb-3'>
+          21days 다운로드
+        </p>
+        <h1
+          id='download-title'
+          className='text-3xl sm:text-4xl font-extrabold leading-tight mb-4'
+        >
+          21days 앱은 곧 다운로드할 수 있어요.
+        </h1>
+        <p className='text-gray-600 text-lg leading-relaxed'>
+          현재 TestFlight 테스트 중입니다.
+        </p>
       </section>
     </div>
   );
