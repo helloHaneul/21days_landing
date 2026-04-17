@@ -11,6 +11,7 @@ export default defineConfig(({mode}) => {
       rollupOptions: {
         input: {
           main: path.resolve(__dirname, 'index.html'),
+          download: path.resolve(__dirname, 'download/index.html'),
           terms: path.resolve(__dirname, 'terms/index.html'),
           privacy: path.resolve(__dirname, 'privacy/index.html'),
           authCallback: path.resolve(__dirname, 'auth/callback/index.html'),
