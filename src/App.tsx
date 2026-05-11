@@ -325,9 +325,55 @@ function DownloadModal() {
 }
 
 function LandingPage() {
-  const [locale, setLocale] = useState<"ko" | "en">("ko");
+  const [locale, setLocale] = useState<"ko" | "en">(() => {
+    const normalizeLocale = (value: unknown) => {
+      if (!value) return null;
+      const lower = String(value).toLowerCase();
+      if (lower.startsWith("ko")) return "ko" as const;
+      if (lower.startsWith("en")) return "en" as const;
+      return null;
+    };
+
+    const getQueryLocale = () => {
+      try {
+        const params = new URLSearchParams(window.location.search);
+        return normalizeLocale(params.get("lang"));
+      } catch {
+        return null;
+      }
+    };
+
+    const getStoredLocale = () => {
+      try {
+        return normalizeLocale(window.localStorage.getItem("21days_locale"));
+      } catch {
+        return null;
+      }
+    };
+
+    const getNavigatorLocale = () => {
+      const langs = Array.isArray(window.navigator.languages)
+        ? window.navigator.languages
+        : [];
+      for (const lang of langs) {
+        const normalized = normalizeLocale(lang);
+        if (normalized) return normalized;
+      }
+      return normalizeLocale(window.navigator.language);
+    };
+
+    return getQueryLocale() || getStoredLocale() || getNavigatorLocale() || "ko";
+  });
   const t = copy[locale];
   const isEnglish = locale === "en";
+
+  useEffect(() => {
+    try {
+      window.localStorage.setItem("21days_locale", locale);
+    } catch {
+      // ignore
+    }
+  }, [locale]);
 
   return (
     <div className='font-sans text-gray-900 antialiased bg-white selection:bg-orange-200'>
