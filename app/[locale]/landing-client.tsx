@@ -39,24 +39,24 @@ const copy = {
     heroCta: "앱 다운로드하러 가기",
     introTitle: (
       <>
-        매일 화내고 후회하던 엄마가
+        아이에게 건강한 루틴을 선물하고 싶은 엄마가
         <br />
-        직접 만들고, 먼저 효과를 봤습니다.
+        직접 만들어 먼저 효과를 봤습니다.
       </>
     ),
     introDescription: (
       <>
-        매번 좋은 부모가 되려 노력하지만, 반복되는 일상 속에서 잔소리 없이
-        아이를 이끌기란 쉽지 않습니다.
-        <br className='hidden md:block' />
-        <span className='font-bold text-orange-500'>21days</span>는 부모님의
-        입을 아프게 하는 대신,
-        <br className='hidden md:block' />
-        아이 스스로 움직이게 만드는{" "}
-        <span className='font-bold text-gray-900'>
-          '가장 현실적이고 확실한 육아 솔루션'
+        <span className='block [text-wrap:pretty]'>
+          아이의 하루를 바꾸고 싶은데, 방법은 자꾸 흔들릴 때가 있어요.
+          결국 중요한 건 완벽한 육아가 아니라, 실수해도 다시 돌아갈 수 있는
+          ‘흐름’이더라고요.
         </span>
-        을 제안합니다.
+        <span className='block mt-5 [text-wrap:pretty]'>
+          <span className='font-bold text-orange-500'>21days</span>는 루틴부터
+          집중 시간, 칭찬 보상까지 한 흐름으로 연결해,
+          아이가 “해냈다”는 경험을 쌓고 온 가족의 일상을 뿌듯하고 편안하게
+          돕습니다.
+        </span>
       </>
     ),
     featuresLabel: "Features",
@@ -91,6 +91,7 @@ const copy = {
       "놀이터에서 약속한 시간만 놀기",
     ],
     timerLabel: "책 읽기 집중",
+    timerCtaPause: "일시정지",
     feature3Title: (
       <>
         확실한 동기부여,
@@ -103,6 +104,7 @@ const copy = {
       "잔소리 대신 코인으로 보상해 주세요. 모은 코인으로 아이가 원하는 선물을 교환하며, 긍정적인 행동이 자연스럽게 '습관'으로 자리 잡습니다.",
     feature3ExamplesLabel: "예시",
     feature3Examples: ["일어나자마자 세수하기", "스스로 양치하고 잠자리 준비"],
+    coinsCardTitle: "칭찬 코인",
     coinCardOne: "도전반찬 성공",
     coinCardTwo: "스스로 장난감 정리 성공",
     feature4Title: (
@@ -122,7 +124,8 @@ const copy = {
     ],
     scheduleCardTitle: "이번 주 일정",
     scheduleCardItems: ["화 · 치과", "수 · 태권도", "금 · 생일파티"],
-    familyLabel: "Family (Paid)",
+    scheduleCardChip: "알림",
+    familyLabel: "Family",
     familyTitle: (
       <>
         가족이 함께 관리할 때
@@ -138,7 +141,8 @@ const copy = {
       "자녀 데이터 공유",
       "자녀당 보호자 수 제한 범위 내 협업",
     ],
-    familyNote: "가족 기능은 유료 플랜에서 제공될 예정입니다.",
+    familyNote:
+      "기본 가족 공유 기능은 무료로 제공됩니다. (추가 고급 기능은 향후 유료 플랜에서 제공될 수 있어요.)",
     visionTitle: (
       <>
         매일의 작은 칭찬이
@@ -166,6 +170,7 @@ const copy = {
     footerTerms: "이용약관",
     footerPrivacy: "개인정보처리방침",
     footerContact: "문의:",
+    footerCopyright: "© 2026 21days. 모든 권리 보유.",
   },
   en: {
     localeLabel: "한국어",
@@ -193,22 +198,22 @@ const copy = {
       <>
         Built by a mom
         <br />
-        who lived through the daily frustration first.
+        who wanted to gift healthy routines
       </>
     ),
     introDescription: (
       <>
-        Every parent wants to do better, but it is not easy to guide a child
-        calmly through repetitive daily routines.
-        <br className='hidden md:block' />
-        <span className='font-bold text-orange-500'>21days</span> helps parents
-        speak less,
-        <br className='hidden md:block' />
-        while helping children take action on their own through{" "}
-        <span className='font-bold text-gray-900'>
-          a practical, encouraging parenting solution
+        <span className='block [text-wrap:pretty]'>
+          You want to change your child’s day, but your approach keeps
+          wavering. In the end, what matters isn’t perfect parenting—it’s a
+          “flow” you can come back to, even after you slip up.
         </span>
-        .
+        <span className='block mt-5 [text-wrap:pretty]'>
+          <span className='font-bold text-orange-500'>21days</span> helps you
+          connect routines, focus time, and praise rewards into a single
+          flow—so your child can build more “I did it” moments and daily life
+          feels calmer and more encouraging for the whole family.
+        </span>
       </>
     ),
     featuresLabel: "Features",
@@ -243,6 +248,7 @@ const copy = {
       "Play at the playground for the agreed time",
     ],
     timerLabel: "Reading Time",
+    timerCtaPause: "Pause",
     feature3Title: (
       <>
         Clear motivation,
@@ -258,8 +264,9 @@ const copy = {
       "Wake up and wash face",
       "Brush teeth and get ready for bed",
     ],
-    coinCardOne: "Brushed teeth",
-    coinCardTwo: "Cleaned up toys",
+    coinsCardTitle: "Coins",
+    coinCardOne: "Tried a new side dish",
+    coinCardTwo: "Cleaned up toys on my own",
     feature4Title: (
       <>
         Keep days organized,
@@ -281,7 +288,8 @@ const copy = {
       "Wed · Taekwondo",
       "Fri · Birthday party",
     ],
-    familyLabel: "Family (Paid)",
+    scheduleCardChip: "ON",
+    familyLabel: "Family",
     familyTitle: (
       <>
         When family manages together,
@@ -297,7 +305,8 @@ const copy = {
       "Share child data",
       "Collaborate within guardian-per-child limits",
     ],
-    familyNote: "Family features are planned for a paid plan.",
+    familyNote:
+      "Basic family sharing is free. (Some advanced features may be part of a paid plan later.)",
     visionTitle: (
       <>
         Small words of praise each day
@@ -326,6 +335,7 @@ const copy = {
     footerTerms: "Terms of Service",
     footerPrivacy: "Privacy Policy",
     footerContact: "Contact:",
+    footerCopyright: "© 2026 21days. All rights reserved.",
   },
 } as const;
 
@@ -344,7 +354,8 @@ function toLocalePath(pathname: string, locale: "ko" | "en") {
 }
 
 export default function LandingClient() {
-  const locale = useLocale() as "ko" | "en";
+  const rawLocale = useLocale();
+  const locale = rawLocale.toLowerCase().startsWith("en") ? "en" : "ko";
   const t = copy[locale];
   const isEnglish = locale === "en";
   const router = useRouter();
@@ -594,7 +605,7 @@ export default function LandingClient() {
                         </div>
                       </div>
                       <button className='w-full bg-blue-500 text-white py-4 rounded-2xl font-bold hover:bg-blue-600 transition-colors'>
-                        Pause
+                        {t.timerCtaPause}
                       </button>
                     </div>
                   </div>
@@ -635,7 +646,9 @@ export default function LandingClient() {
                   <div className='aspect-square md:aspect-[4/3] bg-yellow-50/50 rounded-[40px] border border-yellow-100 shadow-xl overflow-hidden relative flex items-center justify-center p-8'>
                     <div className='w-full max-w-sm bg-white rounded-3xl shadow-lg border border-gray-100 p-6'>
                       <div className='flex items-center justify-between mb-6'>
-                        <div className='font-bold text-lg'>Coins</div>
+                        <div className='font-bold text-lg'>
+                          {t.coinsCardTitle}
+                        </div>
                         <div className='text-sm text-yellow-500 font-bold bg-yellow-50 px-3 py-1 rounded-full'>
                           120
                         </div>
@@ -717,7 +730,7 @@ export default function LandingClient() {
                               </div>
                             </div>
                             <div className='text-xs font-bold text-green-700 bg-green-100 px-2.5 py-1 rounded-full'>
-                              ON
+                              {t.scheduleCardChip}
                             </div>
                           </div>
                         ))}
@@ -835,7 +848,7 @@ export default function LandingClient() {
                 parentingnow.support@gmail.com
               </a>
             </p>
-            <p>© 2026 21days. All rights reserved.</p>
+            <p>{t.footerCopyright}</p>
           </div>
         </div>
       </footer>
