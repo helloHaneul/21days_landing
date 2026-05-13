@@ -47,15 +47,14 @@ const copy = {
     introDescription: (
       <>
         <span className='block [text-wrap:pretty]'>
-          아이의 하루를 바꾸고 싶은데, 방법은 자꾸 흔들릴 때가 있어요.
-          결국 중요한 건 완벽한 육아가 아니라, 실수해도 다시 돌아갈 수 있는
+          아이의 하루를 바꾸고 싶은데, 방법은 자꾸 흔들릴 때가 있어요. 결국
+          중요한 건 완벽한 육아가 아니라, 실수해도 다시 돌아갈 수 있는
           ‘흐름’이더라고요.
         </span>
         <span className='block mt-5 [text-wrap:pretty]'>
           <span className='font-bold text-orange-500'>21days</span>는 루틴부터
-          집중 시간, 칭찬 보상까지 한 흐름으로 연결해,
-          아이가 “해냈다”는 경험을 쌓고 온 가족의 일상을 뿌듯하고 편안하게
-          돕습니다.
+          집중 시간, 칭찬 보상까지 한 흐름으로 연결해, 아이가 “해냈다”는 경험을
+          쌓고 온 가족의 일상을 뿌듯하고 편안하게 돕습니다.
         </span>
       </>
     ),
@@ -169,6 +168,7 @@ const copy = {
     outroCta: "무료로 시작하기",
     footerTerms: "이용약관",
     footerPrivacy: "개인정보처리방침",
+    footerFaq: "자주 묻는 질문",
     footerContact: "문의:",
     footerCopyright: "© 2026 21days. 모든 권리 보유.",
   },
@@ -204,15 +204,15 @@ const copy = {
     introDescription: (
       <>
         <span className='block [text-wrap:pretty]'>
-          You want to change your child’s day, but your approach keeps
-          wavering. In the end, what matters isn’t perfect parenting—it’s a
-          “flow” you can come back to, even after you slip up.
+          You want to change your child’s day, but your approach keeps wavering.
+          In the end, what matters isn’t perfect parenting—it’s a “flow” you can
+          come back to, even after you slip up.
         </span>
         <span className='block mt-5 [text-wrap:pretty]'>
           <span className='font-bold text-orange-500'>21days</span> helps you
-          connect routines, focus time, and praise rewards into a single
-          flow—so your child can build more “I did it” moments and daily life
-          feels calmer and more encouraging for the whole family.
+          connect routines, focus time, and praise rewards into a single flow—so
+          your child can build more “I did it” moments and daily life feels
+          calmer and more encouraging for the whole family.
         </span>
       </>
     ),
@@ -334,6 +334,7 @@ const copy = {
     outroCta: "Start for free",
     footerTerms: "Terms of Service",
     footerPrivacy: "Privacy Policy",
+    footerFaq: "FAQ",
     footerContact: "Contact:",
     footerCopyright: "© 2026 21days. All rights reserved.",
   },
@@ -833,6 +834,12 @@ export default function LandingClient() {
               className='hover:text-gray-900 transition-colors'
             >
               {t.footerPrivacy}
+            </a>
+            <a
+              href={toLocalePath("/faq", locale)}
+              className='hover:text-gray-900 transition-colors'
+            >
+              {t.footerFaq}
             </a>
             <a href='#' className='hover:text-gray-900 transition-colors'>
               parenting-now
