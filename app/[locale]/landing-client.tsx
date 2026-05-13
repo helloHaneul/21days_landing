@@ -1,12 +1,19 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
+"use client";
 
-import React, { useEffect, useState } from "react";
-import { CheckCircle2, Timer, Coins, TrendingUp, Star } from "lucide-react";
+import React from "react";
+import {
+  CheckCircle2,
+  Timer,
+  Coins,
+  CalendarDays,
+  Users,
+  Star,
+} from "lucide-react";
 import { motion } from "motion/react";
-import videoSrc from "./assets/video.mp4";
+import { useLocale } from "next-intl";
+import { usePathname, useRouter } from "next/navigation";
+
+const videoSrc = "/video.mp4";
 
 const copy = {
   ko: {
@@ -64,6 +71,8 @@ const copy = {
     feature1Lead: "아이의 눈높이에 맞춘 약속",
     feature1Body:
       "'어린이집 가방 정리하기', '장난감 치우기' 등 매일 해야 할 일을 아이와 함께 정해 보세요. 루틴을 완료할 때마다 터지는 귀여운 폭죽 화면이 아이의 성취감을 한껏 끌어올려 줍니다.",
+    feature1ExamplesLabel: "예시",
+    feature1Examples: ["등원 준비 스스로 하기", "장난감 정리 습관 들이기"],
     routineCardTitle: "아침 루틴",
     routineCardStatus: "2/3 완료",
     feature2Title: (
@@ -76,6 +85,11 @@ const copy = {
     feature2Lead: "스스로 해내는 시간의 마법",
     feature2Body:
       "약속된 시간 동안 한 가지 일에 집중하는 훈련을 도와줍니다. 타이머가 끝난 후 주어지는 달콤한 보상은 아이의 집중력을 자연스럽게 높여줍니다.",
+    feature2ExamplesLabel: "예시",
+    feature2Examples: [
+      "식사 시간 제자리에서 밥먹기",
+      "놀이터에서 약속한 시간만 놀기",
+    ],
     timerLabel: "책 읽기 집중",
     feature3Title: (
       <>
@@ -87,20 +101,44 @@ const copy = {
     feature3Lead: "잘한 행동에는 확실한 칭찬을",
     feature3Body:
       "잔소리 대신 코인으로 보상해 주세요. 모은 코인으로 아이가 원하는 선물을 교환하며, 긍정적인 행동이 자연스럽게 '습관'으로 자리 잡습니다.",
-    coinCardOne: "양치질 하기",
-    coinCardTwo: "장난감 정리",
+    feature3ExamplesLabel: "예시",
+    feature3Examples: ["일어나자마자 세수하기", "스스로 양치하고 잠자리 준비"],
+    coinCardOne: "도전반찬 성공",
+    coinCardTwo: "스스로 장난감 정리 성공",
     feature4Title: (
       <>
-        매일 쌓이는 발자취,
+        하루가 정리되는,
         <br />
-        성장 기록
+        자녀 일정 관리
       </>
     ),
-    feature4Lead: "육아의 효능감이 채워지는 순간",
+    feature4Lead: "할 일·일정·알림을 한 곳에서",
     feature4Body:
-      "어제보다 오늘 더 나아진 아이의 모습을 눈으로 직접 확인하세요. 차곡차곡 쌓인 칭찬 코인 내역과 루틴 달성률이 부모님에게는 뿌듯함을, 아이에게는 자신감을 선물합니다.",
-    growthTooltip: "이번 주 최고!",
-    weekdays: ["월", "화", "수", "목", "금"],
+      "유치원/학원/병원/특별한 일정까지, 아이의 하루를 한 번에 정리해 보세요. 중요한 일정은 알림으로 놓치지 않게 도와드립니다.",
+    feature4ExamplesLabel: "예시",
+    feature4Examples: [
+      "병원/예방접종 일정 챙기기",
+      "학원/숙제 마감 놓치지 않기",
+    ],
+    scheduleCardTitle: "이번 주 일정",
+    scheduleCardItems: ["화 · 치과", "수 · 태권도", "금 · 생일파티"],
+    familyLabel: "Family (Paid)",
+    familyTitle: (
+      <>
+        가족이 함께 관리할 때
+        <br />
+        육아는 더 쉬워집니다.
+      </>
+    ),
+    familyDescription:
+      "21days의 가족 기능은 ‘가족이 함께 관리하는 가치’를 제공합니다. 공동 보호자와 정보를 공유하고 같은 기준으로 아이를 도울 수 있어요.",
+    familyBullets: [
+      "공동 보호자 초대",
+      "초대코드 생성/수락",
+      "자녀 데이터 공유",
+      "자녀당 보호자 수 제한 범위 내 협업",
+    ],
+    familyNote: "가족 기능은 유료 플랜에서 제공될 예정입니다.",
     visionTitle: (
       <>
         매일의 작은 칭찬이
@@ -185,6 +223,8 @@ const copy = {
     feature1Lead: "Promises made at your child’s level",
     feature1Body:
       "Set daily tasks together, like packing a daycare bag or cleaning up toys. Every completed routine ends with a delightful celebration that boosts your child's sense of accomplishment.",
+    feature1ExamplesLabel: "Examples",
+    feature1Examples: ["Pack the daycare bag", "Clean up toys after play"],
     routineCardTitle: "Morning Routine",
     routineCardStatus: "2/3 done",
     feature2Title: (
@@ -197,6 +237,11 @@ const copy = {
     feature2Lead: "The magic of finishing on your own",
     feature2Body:
       "Help your child practice focusing on one task for a set amount of time. The sweet reward at the end makes concentration feel natural and fun.",
+    feature2ExamplesLabel: "Examples",
+    feature2Examples: [
+      "Stay seated during meals",
+      "Play at the playground for the agreed time",
+    ],
     timerLabel: "Reading Time",
     feature3Title: (
       <>
@@ -208,20 +253,51 @@ const copy = {
     feature3Lead: "Meaningful praise for good habits",
     feature3Body:
       "Use coins instead of nagging. As children collect coins and exchange them for rewards they choose, positive behavior starts to become a lasting habit.",
+    feature3ExamplesLabel: "Examples",
+    feature3Examples: [
+      "Wake up and wash face",
+      "Brush teeth and get ready for bed",
+    ],
     coinCardOne: "Brushed teeth",
     coinCardTwo: "Cleaned up toys",
     feature4Title: (
       <>
-        Daily progress,
+        Keep days organized,
         <br />
-        captured in one place
+        with child schedules
       </>
     ),
-    feature4Lead: "A moment that gives parents confidence too",
+    feature4Lead: "Tasks, events, and reminders in one place",
     feature4Body:
-      "See how your child improves day by day. Stacked coin history and routine completion rates give parents a sense of progress and children a sense of pride.",
-    growthTooltip: "Best this week!",
-    weekdays: ["Mon", "Tue", "Wed", "Thu", "Fri"],
+      "From daycare and lessons to appointments and special events, organize your child’s week at a glance. Gentle reminders help you stay on track.",
+    feature4ExamplesLabel: "Examples",
+    feature4Examples: [
+      "Keep up with vaccines/appointments",
+      "Never miss lessons or homework deadlines",
+    ],
+    scheduleCardTitle: "This Week",
+    scheduleCardItems: [
+      "Tue · Dentist",
+      "Wed · Taekwondo",
+      "Fri · Birthday party",
+    ],
+    familyLabel: "Family (Paid)",
+    familyTitle: (
+      <>
+        When family manages together,
+        <br />
+        parenting gets lighter.
+      </>
+    ),
+    familyDescription:
+      "Family features are designed around the value of managing together—so caregivers stay aligned and children get consistent support.",
+    familyBullets: [
+      "Invite co-guardians",
+      "Create/accept invite codes",
+      "Share child data",
+      "Collaborate within guardian-per-child limits",
+    ],
+    familyNote: "Family features are planned for a paid plan.",
     visionTitle: (
       <>
         Small words of praise each day
@@ -253,127 +329,26 @@ const copy = {
   },
 } as const;
 
-const downloadLinks = {
-  appStore: import.meta.env.VITE_APP_STORE_URL || "",
-  playStore: import.meta.env.VITE_PLAY_STORE_URL || "",
-  testflight: import.meta.env.VITE_TESTFLIGHT_URL || "",
-};
-
-function getDownloadUrl() {
-  const userAgent = window.navigator.userAgent.toLowerCase();
-  const isAndroid = userAgent.includes("android");
-  const isIos =
-    /iphone|ipad|ipod/.test(userAgent) ||
-    (window.navigator.platform === "MacIntel" &&
-      window.navigator.maxTouchPoints > 1);
-
-  if (isAndroid) {
-    return downloadLinks.playStore;
-  }
-
-  if (isIos) {
-    return downloadLinks.appStore;
-  }
-
-  return (
-    downloadLinks.appStore ||
-    downloadLinks.playStore ||
-    downloadLinks.testflight
-  );
+function getOtherLocale(locale: "ko" | "en") {
+  return locale === "ko" ? "en" : "ko";
 }
 
-function DownloadModal() {
-  const downloadUrl = getDownloadUrl();
+function toLocalePath(pathname: string, locale: "ko" | "en") {
+  if (!pathname || pathname === "/") return `/${locale}`;
 
-  useEffect(() => {
-    if (downloadUrl) {
-      window.location.replace(downloadUrl);
-    }
-  }, [downloadUrl]);
+  if (/^\/(ko|en)(?=\/|$)/.test(pathname)) {
+    return pathname.replace(/^\/(ko|en)(?=\/|$)/, `/${locale}`);
+  }
 
-  return (
-    <div className='fixed inset-0 z-50 flex items-center justify-center bg-gray-950/60 px-4 py-8 backdrop-blur-sm'>
-      <section
-        aria-labelledby='download-title'
-        aria-modal='true'
-        className='relative w-full max-w-md bg-white border border-gray-100 shadow-2xl rounded-lg p-8 sm:p-10 text-center'
-        role='dialog'
-      >
-        <a
-          aria-label='닫기'
-          className='absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-lg text-2xl leading-none text-gray-400 hover:bg-gray-100 hover:text-gray-900 transition-colors'
-          href='/'
-        >
-          ×
-        </a>
-
-        <p className='text-sm font-bold text-orange-500 mb-3'>
-          21days 다운로드
-        </p>
-        <h1
-          id='download-title'
-          className='text-3xl sm:text-4xl font-extrabold leading-tight mb-4'
-        >
-          21days 앱은 곧 다운로드할 수 있어요.
-        </h1>
-        <p className='text-gray-600 text-lg leading-relaxed'>
-          현재 TestFlight 테스트 중입니다.
-        </p>
-      </section>
-    </div>
-  );
+  return `/${locale}${pathname.startsWith("/") ? "" : "/"}${pathname}`;
 }
 
-function LandingPage() {
-  const [locale, setLocale] = useState<"ko" | "en">(() => {
-    const normalizeLocale = (value: unknown) => {
-      if (!value) return null;
-      const lower = String(value).toLowerCase();
-      if (lower.startsWith("ko")) return "ko" as const;
-      if (lower.startsWith("en")) return "en" as const;
-      return null;
-    };
-
-    const getQueryLocale = () => {
-      try {
-        const params = new URLSearchParams(window.location.search);
-        return normalizeLocale(params.get("lang"));
-      } catch {
-        return null;
-      }
-    };
-
-    const getStoredLocale = () => {
-      try {
-        return normalizeLocale(window.localStorage.getItem("21days_locale"));
-      } catch {
-        return null;
-      }
-    };
-
-    const getNavigatorLocale = () => {
-      const langs = Array.isArray(window.navigator.languages)
-        ? window.navigator.languages
-        : [];
-      for (const lang of langs) {
-        const normalized = normalizeLocale(lang);
-        if (normalized) return normalized;
-      }
-      return normalizeLocale(window.navigator.language);
-    };
-
-    return getQueryLocale() || getStoredLocale() || getNavigatorLocale() || "ko";
-  });
+export default function LandingClient() {
+  const locale = useLocale() as "ko" | "en";
   const t = copy[locale];
   const isEnglish = locale === "en";
-
-  useEffect(() => {
-    try {
-      window.localStorage.setItem("21days_locale", locale);
-    } catch {
-      // ignore
-    }
-  }, [locale]);
+  const router = useRouter();
+  const pathname = usePathname();
 
   return (
     <div className='font-sans text-gray-900 antialiased bg-white selection:bg-orange-200'>
@@ -385,9 +360,10 @@ function LandingPage() {
           <div>
             <button
               className='bg-gray-900 text-white px-6 py-2.5 rounded-full font-medium hover:bg-gray-800 transition-colors'
-              onClick={() =>
-                setLocale((current) => (current === "ko" ? "en" : "ko"))
-              }
+              onClick={() => {
+                const nextLocale = getOtherLocale(locale);
+                router.replace(toLocalePath(pathname, nextLocale));
+              }}
               type='button'
             >
               {t.localeLabel}
@@ -521,6 +497,21 @@ function LandingPage() {
                     </strong>
                     {t.feature1Body}
                   </p>
+                  <div className='mt-6'>
+                    <div className='text-sm font-bold text-gray-500 mb-2'>
+                      {t.feature1ExamplesLabel}
+                    </div>
+                    <div className='flex flex-wrap gap-2'>
+                      {t.feature1Examples.map((item) => (
+                        <span
+                          key={item}
+                          className='inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-sm font-medium text-gray-700'
+                        >
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
                 <div className='lg:w-1/2 w-full'>
                   <div className='aspect-square md:aspect-[4/3] bg-orange-50/50 rounded-[40px] border border-orange-100 shadow-xl overflow-hidden relative flex items-center justify-center p-8'>
@@ -541,14 +532,12 @@ function LandingPage() {
                           <div className='h-4 bg-gray-800 rounded w-1/2'></div>
                         </div>
                         <div className='flex items-center gap-4 p-4 bg-orange-50 rounded-2xl'>
-                          <div className='w-6 h-6 rounded-full bg-orange-500 flex items-center justify-center'>
-                            <CheckCircle2 className='w-4 h-4 text-white' />
-                          </div>
-                          <div className='h-4 bg-gray-800 rounded w-2/3'></div>
+                          <div className='w-6 h-6 rounded-full bg-orange-300 flex items-center justify-center'></div>
+                          <div className='h-4 bg-gray-200 rounded w-2/3'></div>
                         </div>
-                        <div className='flex items-center gap-4 p-4 border border-gray-100 rounded-2xl'>
-                          <div className='w-6 h-6 rounded-full border-2 border-gray-300'></div>
-                          <div className='h-4 bg-gray-300 rounded w-1/3'></div>
+                        <div className='flex items-center gap-4 p-4 bg-orange-50 rounded-2xl opacity-70'>
+                          <div className='w-6 h-6 rounded-full bg-gray-200'></div>
+                          <div className='h-4 bg-gray-200 rounded w-1/3'></div>
                         </div>
                       </div>
                     </div>
@@ -570,41 +559,43 @@ function LandingPage() {
                     </strong>
                     {t.feature2Body}
                   </p>
+                  <div className='mt-6'>
+                    <div className='text-sm font-bold text-gray-500 mb-2'>
+                      {t.feature2ExamplesLabel}
+                    </div>
+                    <div className='flex flex-wrap gap-2'>
+                      {t.feature2Examples.map((item) => (
+                        <span
+                          key={item}
+                          className='inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-sm font-medium text-gray-700'
+                        >
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
                 <div className='lg:w-1/2 w-full'>
                   <div className='aspect-square md:aspect-[4/3] bg-blue-50/50 rounded-[40px] border border-blue-100 shadow-xl overflow-hidden relative flex items-center justify-center p-8'>
-                    <div className='w-64 h-64 bg-white rounded-full shadow-lg border border-gray-100 flex flex-col items-center justify-center relative'>
-                      <svg
-                        className='absolute inset-0 w-full h-full -rotate-90'
-                        viewBox='0 0 100 100'
-                      >
-                        <circle
-                          cx='50'
-                          cy='50'
-                          r='46'
-                          fill='none'
-                          stroke='#eff6ff'
-                          strokeWidth='8'
-                        />
-                        <circle
-                          cx='50'
-                          cy='50'
-                          r='46'
-                          fill='none'
-                          stroke='#3b82f6'
-                          strokeWidth='8'
-                          strokeDasharray='289'
-                          strokeDashoffset='70'
-                          strokeLinecap='round'
-                          className='transition-all duration-1000'
-                        />
-                      </svg>
-                      <span className='text-5xl font-bold text-gray-900 tracking-tighter'>
-                        15:00
-                      </span>
-                      <span className='text-gray-500 mt-2 font-medium'>
-                        {t.timerLabel}
-                      </span>
+                    <div className='w-full max-w-sm bg-white rounded-3xl shadow-lg border border-gray-100 p-6'>
+                      <div className='flex items-center justify-between mb-6'>
+                        <div className='font-bold text-lg'>{t.timerLabel}</div>
+                        <div className='text-sm text-blue-500 font-bold bg-blue-50 px-3 py-1 rounded-full'>
+                          10:00
+                        </div>
+                      </div>
+                      <div className='relative w-48 h-48 mx-auto mb-8'>
+                        <div className='absolute inset-0 rounded-full border-8 border-blue-100'></div>
+                        <div className='absolute inset-0 rounded-full border-8 border-blue-500 border-t-transparent rotate-45'></div>
+                        <div className='absolute inset-0 flex items-center justify-center'>
+                          <div className='text-4xl font-bold text-gray-900'>
+                            03:24
+                          </div>
+                        </div>
+                      </div>
+                      <button className='w-full bg-blue-500 text-white py-4 rounded-2xl font-bold hover:bg-blue-600 transition-colors'>
+                        Pause
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -624,30 +615,45 @@ function LandingPage() {
                     </strong>
                     {t.feature3Body}
                   </p>
+                  <div className='mt-6'>
+                    <div className='text-sm font-bold text-gray-500 mb-2'>
+                      {t.feature3ExamplesLabel}
+                    </div>
+                    <div className='flex flex-wrap gap-2'>
+                      {t.feature3Examples.map((item) => (
+                        <span
+                          key={item}
+                          className='inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-sm font-medium text-gray-700'
+                        >
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
                 <div className='lg:w-1/2 w-full'>
                   <div className='aspect-square md:aspect-[4/3] bg-yellow-50/50 rounded-[40px] border border-yellow-100 shadow-xl overflow-hidden relative flex items-center justify-center p-8'>
-                    <div className='grid grid-cols-2 gap-6 w-full max-w-md'>
-                      <div className='bg-white p-8 rounded-3xl shadow-lg border border-gray-100 text-center flex flex-col items-center transform -translate-y-4 hover:-translate-y-6 transition-transform'>
-                        <div className='w-20 h-20 bg-yellow-100 rounded-full flex items-center justify-center mb-6 shadow-inner'>
-                          <Star className='w-10 h-10 text-yellow-500 fill-yellow-500' />
-                        </div>
-                        <div className='text-3xl font-extrabold text-gray-900 mb-2'>
-                          +5
-                        </div>
-                        <div className='text-gray-500 font-medium'>
-                          {t.coinCardOne}
+                    <div className='w-full max-w-sm bg-white rounded-3xl shadow-lg border border-gray-100 p-6'>
+                      <div className='flex items-center justify-between mb-6'>
+                        <div className='font-bold text-lg'>Coins</div>
+                        <div className='text-sm text-yellow-500 font-bold bg-yellow-50 px-3 py-1 rounded-full'>
+                          120
                         </div>
                       </div>
-                      <div className='bg-white p-8 rounded-3xl shadow-lg border border-gray-100 text-center flex flex-col items-center transform translate-y-4 hover:translate-y-2 transition-transform'>
-                        <div className='w-20 h-20 bg-yellow-100 rounded-full flex items-center justify-center mb-6 shadow-inner'>
-                          <Star className='w-10 h-10 text-yellow-500 fill-yellow-500' />
+                      <div className='space-y-4'>
+                        <div className='flex items-center justify-between p-4 bg-yellow-50 rounded-2xl'>
+                          <div className='font-medium'>{t.coinCardOne}</div>
+                          <div className='flex items-center gap-1 text-yellow-500 font-bold'>
+                            <Star className='w-4 h-4 fill-yellow-500' />
+                            +10
+                          </div>
                         </div>
-                        <div className='text-3xl font-extrabold text-gray-900 mb-2'>
-                          +10
-                        </div>
-                        <div className='text-gray-500 font-medium'>
-                          {t.coinCardTwo}
+                        <div className='flex items-center justify-between p-4 bg-yellow-50 rounded-2xl'>
+                          <div className='font-medium'>{t.coinCardTwo}</div>
+                          <div className='flex items-center gap-1 text-yellow-500 font-bold'>
+                            <Star className='w-4 h-4 fill-yellow-500' />
+                            +8
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -658,7 +664,7 @@ function LandingPage() {
               <div className='flex flex-col lg:flex-row-reverse items-center gap-16'>
                 <div className='lg:w-1/2'>
                   <div className='w-14 h-14 bg-green-100 rounded-2xl flex items-center justify-center mb-6'>
-                    <TrendingUp className='w-7 h-7 text-green-500' />
+                    <CalendarDays className='w-7 h-7 text-green-500' />
                   </div>
                   <h4 className='text-3xl md:text-4xl font-bold mb-6 leading-tight'>
                     {t.feature4Title}
@@ -669,29 +675,91 @@ function LandingPage() {
                     </strong>
                     {t.feature4Body}
                   </p>
+                  <div className='mt-6'>
+                    <div className='text-sm font-bold text-gray-500 mb-2'>
+                      {t.feature4ExamplesLabel}
+                    </div>
+                    <div className='flex flex-wrap gap-2'>
+                      {t.feature4Examples.map((item) => (
+                        <span
+                          key={item}
+                          className='inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-sm font-medium text-gray-700'
+                        >
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
                 <div className='lg:w-1/2 w-full'>
-                  <div className='aspect-square md:aspect-[4/3] bg-green-50/50 rounded-[40px] border border-green-100 shadow-xl overflow-hidden relative flex items-end justify-center p-8'>
-                    <div className='w-full max-w-md bg-white rounded-t-3xl shadow-[0_-10px_40px_rgba(0,0,0,0.05)] p-8 h-64 flex flex-col justify-end'>
-                      <div className='flex items-end justify-between gap-3 h-40'>
-                        <div className='w-full bg-green-100 rounded-t-xl h-[30%] hover:bg-green-200 transition-colors'></div>
-                        <div className='w-full bg-green-200 rounded-t-xl h-[50%] hover:bg-green-300 transition-colors'></div>
-                        <div className='w-full bg-green-300 rounded-t-xl h-[40%] hover:bg-green-400 transition-colors'></div>
-                        <div className='w-full bg-green-400 rounded-t-xl h-[70%] hover:bg-green-500 transition-colors'></div>
-                        <div className='w-full bg-green-500 rounded-t-xl h-[90%] relative group'>
-                          <div className='absolute -top-12 left-1/2 -translate-x-1/2 bg-gray-900 text-white text-sm py-1.5 px-3 rounded-lg font-bold opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap'>
-                            {t.growthTooltip}
-                          </div>
+                  <div className='aspect-square md:aspect-[4/3] bg-green-50/50 rounded-[40px] border border-green-100 shadow-xl overflow-hidden relative flex items-center justify-center p-8'>
+                    <div className='w-full max-w-sm bg-white rounded-3xl shadow-lg border border-gray-100 p-6'>
+                      <div className='flex items-center justify-between mb-6'>
+                        <div className='font-bold text-lg'>
+                          {t.scheduleCardTitle}
+                        </div>
+                        <div className='text-sm text-green-600 font-bold bg-green-50 px-3 py-1 rounded-full'>
+                          3
                         </div>
                       </div>
-                      <div className='flex justify-between mt-4 text-xs text-gray-400 font-medium'>
-                        {t.weekdays.map((day) => (
-                          <span key={day}>{day}</span>
+                      <div className='space-y-3'>
+                        {t.scheduleCardItems.map((item) => (
+                          <div
+                            key={item}
+                            className='flex items-center justify-between gap-3 p-4 bg-green-50 rounded-2xl'
+                          >
+                            <div className='flex items-center gap-3'>
+                              <div className='w-9 h-9 rounded-2xl bg-white border border-green-100 flex items-center justify-center text-green-600'>
+                                <CalendarDays className='w-5 h-5' />
+                              </div>
+                              <div className='font-medium text-gray-900'>
+                                {item}
+                              </div>
+                            </div>
+                            <div className='text-xs font-bold text-green-700 bg-green-100 px-2.5 py-1 rounded-full'>
+                              ON
+                            </div>
+                          </div>
                         ))}
                       </div>
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className='py-24 bg-white'>
+          <div className='max-w-6xl mx-auto px-4 sm:px-6 lg:px-8'>
+            <div className='grid gap-10 lg:grid-cols-2 lg:gap-16 items-start'>
+              <div>
+                <div className='inline-flex items-center gap-2 text-sm font-bold text-orange-600 bg-orange-50 px-4 py-2 rounded-full mb-5'>
+                  <Users className='w-4 h-4' />
+                  <span>{t.familyLabel}</span>
+                </div>
+                <h3 className='text-3xl md:text-4xl font-extrabold text-gray-900 leading-tight mb-5'>
+                  {t.familyTitle}
+                </h3>
+                <p className='text-lg text-gray-600 leading-relaxed'>
+                  {t.familyDescription}
+                </p>
+              </div>
+
+              <div className='bg-gray-50 border border-gray-100 rounded-3xl p-8 shadow-sm'>
+                <ul className='space-y-4'>
+                  {t.familyBullets.map((item) => (
+                    <li key={item} className='flex items-start gap-3'>
+                      <span className='mt-1 w-5 h-5 rounded-full bg-gray-900 text-white flex items-center justify-center text-xs font-bold'>
+                        ✓
+                      </span>
+                      <span className='text-gray-800 font-medium leading-relaxed'>
+                        {item}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+                <p className='mt-6 text-sm text-gray-500'>{t.familyNote}</p>
               </div>
             </div>
           </div>
@@ -753,7 +821,6 @@ function LandingPage() {
             >
               {t.footerPrivacy}
             </a>
-            {/* TODO: 고객센터 운영 방식이 정리되면 메일/폼 링크로 다시 노출 */}
             <a href='#' className='hover:text-gray-900 transition-colors'>
               parenting-now
             </a>
@@ -773,17 +840,5 @@ function LandingPage() {
         </div>
       </footer>
     </div>
-  );
-}
-
-export default function App() {
-  const isDownloadRoute =
-    window.location.pathname.replace(/\/$/, "") === "/download";
-
-  return (
-    <>
-      <LandingPage />
-      {isDownloadRoute && <DownloadModal />}
-    </>
   );
 }
