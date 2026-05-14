@@ -40,17 +40,40 @@ export function GET(request: Request) {
               width: 64,
               height: 64,
               borderRadius: 18,
-              background: "#111827",
+              background: "rgba(34,197,94,0.12)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              color: "white",
-              fontWeight: 800,
-              fontSize: 30,
-              letterSpacing: "-0.03em",
             }}
           >
-            21
+            <svg
+              width="34"
+              height="34"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 20V12"
+                stroke="#16a34a"
+                strokeWidth="2.2"
+                strokeLinecap="round"
+              />
+              <path
+                d="M12 12c-4.2 0-7-2.2-8-6.5 4.8-.6 8 1.4 9 4.7"
+                stroke="#16a34a"
+                strokeWidth="2.2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M12 12c4.2 0 7-2.2 8-6.5-4.8-.6-8 1.4-9 4.7"
+                stroke="#16a34a"
+                strokeWidth="2.2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
           </div>
           <div
             style={{
@@ -64,7 +87,7 @@ export function GET(request: Request) {
           </div>
         </div>
 
-        <div style={{maxWidth: 980}}>
+        <div style={{maxWidth: 980, display: "flex", flexDirection: "column"}}>
           <div
             style={{
               fontSize: 64,
@@ -115,4 +138,3 @@ export function GET(request: Request) {
     },
   );
 }
-

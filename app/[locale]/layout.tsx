@@ -14,7 +14,7 @@ export async function generateMetadata({params}: Omit<Props, "children">): Promi
   const t = await getTranslations({locale, namespace: "meta"});
   const title = t("title");
   const description = t("description");
-  const ogImageUrl = `/og?locale=${locale}`;
+  const ogImageUrl = "/og.png";
 
   return {
     title,
