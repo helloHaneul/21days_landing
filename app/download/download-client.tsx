@@ -1,24 +1,31 @@
 "use client";
 
 import {useEffect} from "react";
+import {useSearchParams} from "next/navigation";
 
 type Props = {
   appStoreUrl: string;
   playStoreUrl: string;
-  testflightUrl: string;
 };
 
-function getDownloadUrl({
-  appStoreUrl,
-  playStoreUrl,
-  testflightUrl,
-}: Props): string {
+function getDownloadUrl(
+  {appStoreUrl, playStoreUrl}: Props,
+  requestedPlatform: string | null
+): string {
   const userAgent = window.navigator.userAgent.toLowerCase();
   const isAndroid = userAgent.includes("android");
   const isIos =
     /iphone|ipad|ipod/.test(userAgent) ||
     (window.navigator.platform === "MacIntel" &&
       window.navigator.maxTouchPoints > 1);
+
+  if (requestedPlatform === "android") {
+    return playStoreUrl;
+  }
+
+  if (requestedPlatform === "ios") {
+    return appStoreUrl;
+  }
 
   if (isAndroid) {
     return playStoreUrl;
@@ -28,11 +35,16 @@ function getDownloadUrl({
     return appStoreUrl;
   }
 
-  return appStoreUrl || playStoreUrl || testflightUrl;
+  return appStoreUrl || playStoreUrl;
 }
 
 export default function DownloadClient(props: Props) {
-  const downloadUrl = typeof window === "undefined" ? "" : getDownloadUrl(props);
+  const searchParams = useSearchParams();
+  const requestedPlatform = searchParams.get("platform");
+  const downloadUrl =
+    typeof window === "undefined"
+      ? ""
+      : getDownloadUrl(props, requestedPlatform);
 
   useEffect(() => {
     if (downloadUrl) {
@@ -64,10 +76,9 @@ export default function DownloadClient(props: Props) {
           21days 앱은 곧 다운로드할 수 있어요.
         </h1>
         <p className="text-gray-600 text-lg leading-relaxed">
-          현재 TestFlight 테스트 중입니다.
+          Android 앱은 현재 출시 준비 중입니다.
         </p>
       </section>
     </div>
   );
 }
-

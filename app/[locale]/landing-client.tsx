@@ -36,7 +36,8 @@ const copy = {
         잔소리 대신 따뜻한 칭찬으로 21일의 마법을 경험해 보세요.
       </>
     ),
-    heroCta: "앱 다운로드하러 가기",
+    heroCtaIos: "iOS 앱 다운로드",
+    heroCtaAndroid: "Android 앱 다운로드",
     introTitle: (
       <>
         아이에게 건강한 루틴을 선물하고 싶은 엄마가
@@ -193,7 +194,8 @@ const copy = {
         nagging.
       </>
     ),
-    heroCta: "Download the app",
+    heroCtaIos: "Download for iOS",
+    heroCtaAndroid: "Download for Android",
     introTitle: (
       <>
         Built by a mom
@@ -423,14 +425,24 @@ export default function LandingClient() {
                 }`}
               >
                 <a
-                  href='/download/'
+                  href={process.env.NEXT_PUBLIC_APP_STORE_URL || "/download/"}
                   className={`flex items-center justify-center gap-2 bg-gray-900 text-white px-8 py-4 rounded-full font-medium hover:bg-gray-800 transition-colors ${
                     isEnglish
                       ? "text-base sm:text-lg min-w-[220px]"
                       : "text-lg w-full sm:w-auto"
                   }`}
                 >
-                  {t.heroCta}
+                  {t.heroCtaIos}
+                </a>
+                <a
+                  href='/download/?platform=android'
+                  className={`flex items-center justify-center gap-2 border border-gray-300 bg-white text-gray-900 px-8 py-4 rounded-full font-medium hover:bg-gray-50 transition-colors ${
+                    isEnglish
+                      ? "text-base sm:text-lg min-w-[220px]"
+                      : "text-lg w-full sm:w-auto"
+                  }`}
+                >
+                  {t.heroCtaAndroid}
                 </a>
               </motion.div>
             </div>
