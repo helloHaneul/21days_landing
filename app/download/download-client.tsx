@@ -1,11 +1,11 @@
 "use client";
 
 import {useEffect} from "react";
-import {useSearchParams} from "next/navigation";
 
 type Props = {
   appStoreUrl: string;
   playStoreUrl: string;
+  requestedPlatform: string | null;
 };
 
 function getDownloadUrl(
@@ -39,12 +39,10 @@ function getDownloadUrl(
 }
 
 export default function DownloadClient(props: Props) {
-  const searchParams = useSearchParams();
-  const requestedPlatform = searchParams.get("platform");
   const downloadUrl =
     typeof window === "undefined"
       ? ""
-      : getDownloadUrl(props, requestedPlatform);
+      : getDownloadUrl(props, props.requestedPlatform);
 
   useEffect(() => {
     if (downloadUrl) {
