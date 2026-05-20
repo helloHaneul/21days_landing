@@ -1,4 +1,5 @@
 import DownloadClient from "./download-client";
+import {APP_STORE_URL, PLAY_STORE_URL} from "@/lib/download-links";
 
 type PageProps = {
   searchParams?: Promise<{
@@ -11,8 +12,8 @@ export default async function Page({searchParams}: PageProps) {
 
   return (
     <DownloadClient
-      appStoreUrl={process.env.NEXT_PUBLIC_APP_STORE_URL || ""}
-      playStoreUrl={process.env.NEXT_PUBLIC_PLAY_STORE_URL || ""}
+      appStoreUrl={APP_STORE_URL}
+      playStoreUrl={PLAY_STORE_URL}
       requestedPlatform={params?.platform || null}
     />
   );

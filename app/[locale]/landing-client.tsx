@@ -12,6 +12,7 @@ import {
 import { motion } from "motion/react";
 import { useLocale } from "next-intl";
 import { usePathname, useRouter } from "next/navigation";
+import {APP_STORE_URL} from "@/lib/download-links";
 
 const videoSrc = "/video.mp4";
 
@@ -425,7 +426,7 @@ export default function LandingClient() {
                 }`}
               >
                 <a
-                  href={process.env.NEXT_PUBLIC_APP_STORE_URL || "/download/"}
+                  href={APP_STORE_URL}
                   className={`flex items-center justify-center gap-2 bg-gray-900 text-white px-8 py-4 rounded-full font-medium hover:bg-gray-800 transition-colors ${
                     isEnglish
                       ? "text-base sm:text-lg min-w-[220px]"
