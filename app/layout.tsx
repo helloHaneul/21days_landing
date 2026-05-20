@@ -1,5 +1,5 @@
 import type {Metadata} from "next";
-import Script from "next/script";
+import AnalyticsScripts from "./analytics-scripts";
 import {
   GOOGLE_ANALYTICS_ID,
   GOOGLE_SITE_VERIFICATION,
@@ -28,40 +28,10 @@ export const metadata: Metadata = {
 export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
     <html lang="ko">
-      {GOOGLE_ANALYTICS_ID ? (
-        <>
-          <Script
-            async
-            src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}
-            strategy="afterInteractive"
-          />
-          <Script id="google-analytics" strategy="afterInteractive">
-            {`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', '${GOOGLE_ANALYTICS_ID}');
-            `}
-          </Script>
-        </>
-      ) : null}
-      {NAVER_ANALYTICS_ID ? (
-        <>
-          <Script
-            src="https://wcs.pstatic.net/wcslog.js"
-            strategy="afterInteractive"
-          />
-          <Script id="naver-analytics" strategy="afterInteractive">
-            {`
-              if (!window.wcs_add) window.wcs_add = {};
-              window.wcs_add["wa"] = "${NAVER_ANALYTICS_ID}";
-              if (window.wcs) {
-                window.wcs_do();
-              }
-            `}
-          </Script>
-        </>
-      ) : null}
+      <AnalyticsScripts
+        googleAnalyticsId={GOOGLE_ANALYTICS_ID}
+        naverAnalyticsId={NAVER_ANALYTICS_ID}
+      />
       <body>{children}</body>
     </html>
   );
