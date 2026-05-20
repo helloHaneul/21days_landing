@@ -3,6 +3,7 @@ import Script from "next/script";
 import {
   GOOGLE_ANALYTICS_ID,
   GOOGLE_SITE_VERIFICATION,
+  NAVER_ANALYTICS_ID,
   NAVER_SITE_VERIFICATION,
   SITE_URL_OBJECT,
 } from "@/lib/site";
@@ -40,6 +41,23 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
               gtag('config', '${GOOGLE_ANALYTICS_ID}');
+            `}
+          </Script>
+        </>
+      ) : null}
+      {NAVER_ANALYTICS_ID ? (
+        <>
+          <Script
+            src="https://wcs.pstatic.net/wcslog.js"
+            strategy="afterInteractive"
+          />
+          <Script id="naver-analytics" strategy="afterInteractive">
+            {`
+              if (!window.wcs_add) window.wcs_add = {};
+              window.wcs_add["wa"] = "${NAVER_ANALYTICS_ID}";
+              if (window.wcs) {
+                window.wcs_do();
+              }
             `}
           </Script>
         </>
