@@ -1,19 +1,24 @@
 import type {Metadata} from "next";
+import {
+  GOOGLE_SITE_VERIFICATION,
+  NAVER_SITE_VERIFICATION,
+  SITE_URL_OBJECT,
+} from "@/lib/site";
 
 import "./globals.css";
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ||
-  (process.env.VERCEL_ENV === "production"
-    ? "https://www.21days-routine.com"
-    : process.env.VERCEL_URL
-      ? `https://${process.env.VERCEL_URL}`
-      : "http://localhost:3000");
-
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: SITE_URL_OBJECT,
   icons: {
     icon: [{url: "/favicon.png"}],
+  },
+  verification: {
+    google: GOOGLE_SITE_VERIFICATION || undefined,
+    other: NAVER_SITE_VERIFICATION
+      ? {
+          "naver-site-verification": NAVER_SITE_VERIFICATION,
+        }
+      : undefined,
   },
 };
 
