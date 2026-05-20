@@ -14,6 +14,9 @@ export const GOOGLE_SITE_VERIFICATION =
 export const NAVER_SITE_VERIFICATION =
   process.env.NEXT_PUBLIC_NAVER_SITE_VERIFICATION || "";
 
+export const GOOGLE_ANALYTICS_ID =
+  process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID || "";
+
 export function getLocaleAlternates(pathname: string) {
   return {
     canonical: pathname,
