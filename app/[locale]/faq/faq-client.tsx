@@ -98,6 +98,17 @@ const copy: Record<
             answer:
               "기기 시간이나 시간대가 바뀌면 알림 시점이 달라질 수 있어요. 알림 시점을 확인하고 필요하다면 수동으로 조정해 주세요.",
           },
+          {
+            question:
+              "한 일정에 '반복 설정'과 '기간 설정'을 동시에 사용할 수 있나요?",
+            answer:
+              "아니요, 현재 버전에서는 두 설정을 동시에 사용할 수 없어요. 매주 반복되는 일정은 [반복 일정]으로, 며칠 동안 이어지는 여행이나 캠프 같은 스케줄은 [기간 일정]으로 각각 나누어 등록해주세요.",
+          },
+          {
+            question: "부모가 함께 자녀 일정을 등록하고 수정할 수 있나요?",
+            answer:
+              "현재 버전에서는 주양육자분만 일정을 등록할 수 있고, 초대 코드로 들어온 공동 양육자는 등록한 일정을 실시간으로 확인하는 기능만 제공됩니다. 추후 업데이트를 통해 온 가족이 함께 일정을 편집할 수 있는 프리미엄 멤버십 기능이 추가될 예정입니다.",
+          },
         ],
       },
       {
@@ -170,7 +181,8 @@ const copy: Record<
               "In Family features, create an invite code and share it. The invited user can enter the code in the app to manage the same child’s data together.",
           },
           {
-            question: "Sometimes an invite code doesn’t work. What should I do?",
+            question:
+              "Sometimes an invite code doesn’t work. What should I do?",
             answer:
               "The code may have expired, reached its usage limit, or been revoked. If the code looks correct but still won’t connect, ask for a new invite code and try again.",
           },
@@ -205,19 +217,34 @@ const copy: Record<
               "You can organize key events and tasks—daycare, lessons, appointments, and special plans—and use reminders so you don’t miss what matters.",
           },
           {
-            question: "Reminders don’t always arrive on time. What should I do?",
+            question:
+              "Reminders don’t always arrive on time. What should I do?",
             answer:
               "21days uses local notifications and only schedules actual reminder times within the next 3 days (excluding times that already passed). If you haven’t opened the app for a long time, new routines or schedule changes may not be reflected in notifications right away.\nIf reminders are often missing, open the app once to refresh and update your notifications.",
           },
           {
-            question: "After changing schedules or routines, please open the app once.",
+            question:
+              "After changing schedules or routines, please open the app once.",
             answer:
               "Notifications are calculated by the app and re-registered on your device. After editing schedules or routines, opening the app once helps ensure notifications are updated with the latest info.",
           },
           {
-            question: "Changing your device time or time zone can affect reminder times.",
+            question:
+              "Changing your device time or time zone can affect reminder times.",
             answer:
               "If your device time or time zone changes, reminder times may shift. Please double-check and adjust reminder times if needed.",
+          },
+          {
+            question:
+              "Can I use both “Recurring Settings” and “Duration Settings” for the same event?",
+            answer:
+              "No, you cannot use both settings at the same time in the current version. Please register weekly recurring events as [Recurring Events] and schedules that span several days, such as trips or camps, as [Duration Events].",
+          },
+          {
+            question:
+              "Can both parents register and edit their children’s schedules together?",
+            answer:
+              "Currently, only the primary caregiver can register schedules, while invited co-caregivers can only view the registered schedules in real-time. Future updates will introduce a premium membership feature that allows the entire family to edit schedules together.",
           },
         ],
       },
@@ -236,12 +263,14 @@ const copy: Record<
               "No. Linking is supported, but merging two different accounts into one is not currently supported.",
           },
           {
-            question: "What should I be careful about since merging isn’t supported?",
+            question:
+              "What should I be careful about since merging isn’t supported?",
             answer:
               "If you already signed up with email and then sign in again via social login using the same email, a separate account can be created. To keep your existing data (children, routines, history, etc.), link social login to your existing account instead of creating a new one.",
           },
           {
-            question: "After email sign-up, you must confirm the verification email.",
+            question:
+              "After email sign-up, you must confirm the verification email.",
             answer:
               "If you sign up with email, registration completes after you tap the verification link sent to your inbox. If you don’t see it, check Spam/Promotions as well.",
           },
