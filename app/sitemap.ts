@@ -7,6 +7,8 @@ const routes = [
   "/en",
   "/ko/faq",
   "/en/faq",
+  "/ko/support",
+  "/en/support",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -15,7 +17,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return routes.map((route) => ({
     url: `${SITE_URL}${route}`,
     lastModified,
-    changeFrequency: route.includes("/faq") ? "monthly" : "weekly",
-    priority: route === "" ? 1 : route.includes("/faq") ? 0.6 : 0.8,
+    changeFrequency: route.includes("/faq") || route.includes("/support") ? "monthly" : "weekly",
+    priority:
+      route === "" ? 1 : route.includes("/faq") || route.includes("/support") ? 0.6 : 0.8,
   }));
 }

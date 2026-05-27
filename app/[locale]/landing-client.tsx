@@ -171,6 +171,7 @@ const copy = {
     footerTerms: "이용약관",
     footerPrivacy: "개인정보처리방침",
     footerFaq: "자주 묻는 질문",
+    footerSupport: "고객지원",
     footerContact: "문의:",
     footerCopyright: "© 2026 21days. 모든 권리 보유.",
   },
@@ -338,6 +339,7 @@ const copy = {
     footerTerms: "Terms of Service",
     footerPrivacy: "Privacy Policy",
     footerFaq: "FAQ",
+    footerSupport: "Support",
     footerContact: "Contact:",
     footerCopyright: "© 2026 21days. All rights reserved.",
   },
@@ -853,6 +855,12 @@ export default function LandingClient() {
               className='hover:text-gray-900 transition-colors'
             >
               {t.footerFaq}
+            </a>
+            <a
+              href={toLocalePath("/support", locale)}
+              className='hover:text-gray-900 transition-colors'
+            >
+              {t.footerSupport}
             </a>
             <a href='#' className='hover:text-gray-900 transition-colors'>
               parenting-now
