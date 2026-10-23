@@ -8,6 +8,6 @@ export default createMiddleware({
 
 export const config = {
   matcher: [
-    "/((?!_next/static|_next/image|favicon.ico|.*\\..*|download|terms|privacy|auth/callback|og).*)",
+    "/((?!_next/static|_next/image|favicon.ico|.*\\..*|download|terms|privacy|account-deletion|auth/callback|og).*)",
   ],
 };

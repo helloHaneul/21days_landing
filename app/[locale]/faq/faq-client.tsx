@@ -149,7 +149,7 @@ const copy: Record<
           {
             question: "계정을 삭제하면 무엇이 함께 삭제되나요?",
             answer:
-              "계정을 삭제하면 내 정보뿐 아니라 자녀 데이터도 함께 삭제될 수 있어요. 다만 초대코드로 연결된 다른 활성 보호자가 있다면, 그 사용자가 계속 자녀 데이터를 관리할 수 있어요.\n다른 활성 보호자가 없으면, 자녀 정보, 루틴, 수행 기록, 성장 기록, 코인 내역까지 함께 삭제되고 복구할 수 없으니 신중히 결정해주세요.",
+              "계정을 삭제하면 내 계정, 프로필, 개인 설정 및 로그인 정보가 삭제돼요. 자녀에게 연결된 다른 활성 보호자가 있으면 자녀 정보와 루틴·기록은 해당 보호자에게 승계되어 유지되고, 작성자 정보는 삭제된 계정과 연결되지 않도록 처리돼요. 승계할 보호자가 없으면 해당 자녀의 정보와 연결된 루틴·기록이 삭제되며 복구할 수 없어요.",
           },
           {
             question: "네트워크가 불안정하면 일부 기능이 늦게 반영될 수 있어요",
@@ -288,7 +288,7 @@ const copy: Record<
           {
             question: "What gets deleted when I delete my account?",
             answer:
-              "Deleting your account may delete your personal info and your child data as well. However, if there is another active guardian connected via an invite code, that guardian can continue managing the child’s data.\nIf there are no other active guardians, the child profile, routines, completion history, growth records, and coin history may be deleted and cannot be recovered—please decide carefully.",
+              "Deleting your account deletes your account, profile, personal settings, and sign-in information. If another active guardian is connected to a child, the child’s information and routines or records are transferred to that guardian and retained, while author information is processed so it is no longer linked to the deleted account. If there is no guardian to receive the data, the child’s information and associated routines or records are deleted and cannot be recovered.",
           },
           {
             question:

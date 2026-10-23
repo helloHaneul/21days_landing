@@ -9,6 +9,7 @@ const routes = [
   "/en/faq",
   "/ko/support",
   "/en/support",
+  "/account-deletion",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -17,8 +18,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return routes.map((route) => ({
     url: `${SITE_URL}${route}`,
     lastModified,
-    changeFrequency: route.includes("/faq") || route.includes("/support") ? "monthly" : "weekly",
+    changeFrequency:
+      route.includes("/faq") || route.includes("/support") || route.includes("account-deletion")
+        ? "monthly"
+        : "weekly",
     priority:
-      route === "" ? 1 : route.includes("/faq") || route.includes("/support") ? 0.6 : 0.8,
+      route === ""
+        ? 1
+        : route.includes("/faq") || route.includes("/support") || route.includes("account-deletion")
+          ? 0.6
+          : 0.8,
   }));
 }

@@ -172,6 +172,7 @@ const copy = {
     footerPrivacy: "개인정보처리방침",
     footerFaq: "자주 묻는 질문",
     footerSupport: "고객지원",
+    footerAccountDeletion: "계정 및 데이터 삭제",
     footerContact: "문의:",
     footerCopyright: "© 2026 21days. 모든 권리 보유.",
   },
@@ -340,6 +341,7 @@ const copy = {
     footerPrivacy: "Privacy Policy",
     footerFaq: "FAQ",
     footerSupport: "Support",
+    footerAccountDeletion: "Account & Data Deletion",
     footerContact: "Contact:",
     footerCopyright: "© 2026 21days. All rights reserved.",
   },
@@ -861,6 +863,12 @@ export default function LandingClient() {
               className='hover:text-gray-900 transition-colors'
             >
               {t.footerSupport}
+            </a>
+            <a
+              href='/account-deletion/'
+              className='hover:text-gray-900 transition-colors'
+            >
+              {t.footerAccountDeletion}
             </a>
             <a href='#' className='hover:text-gray-900 transition-colors'>
               parenting-now
