@@ -40,7 +40,7 @@ const copy: Record<
           {
             question: "모든 기능은 무료인가요?",
             answer:
-              "자녀 최대 3명, 보호자 2명까지 가족 공유 기능은 무료로 제공됩니다. 추가 자녀나 보호자, 프리미엄 기능은 유료 구독으로 제공될 예정입니다.",
+              "Free는 자녀 최대 2명, 자녀당 보호자 최대 2명, 자녀당 루틴 최대 3개를 제공합니다. Pro는 자녀 최대 5명, 자녀당 보호자 최대 6명, 자녀당 루틴 최대 20개와 Family Board, 보드 시작 알림·보호자 미시작 알림을 제공합니다. 월간·연간 요금은 앱 내 스토어 구독 화면에서 확인할 수 있어요.",
           },
           {
             question: "공동 보호자는 어떻게 초대하나요?",
@@ -60,7 +60,7 @@ const copy: Record<
           {
             question: "루틴은 무제한으로 등록해서 사용할 수 있나요?",
             answer:
-              "자녀당 활성 가능한 루틴은 최대 10개입니다. 적정량의 루틴을 관리하는 것이 아이의 집중과 성취감을 높이는 데 도움이 됩니다. 루틴이 꽉 찼다면, 완료한 루틴을 지우고 새로운 루틴을 추가해 보세요.",
+              "자녀당 루틴은 Free에서 최대 3개, Pro에서 최대 20개를 등록할 수 있어요. 아이에게 맞는 루틴부터 조금씩 시작해 보세요.",
           },
           {
             question: "루틴이 잘 안 지켜질 때는 어떻게 시작하면 좋을까요?",
@@ -71,43 +71,6 @@ const copy: Record<
             question: "집중 타이머는 어떤 상황에서 유용한가요?",
             answer:
               "식사 시간에 제자리에 앉아 있기, 놀이터에서 약속한 시간만 놀기처럼 ‘짧게 집중할 약속’이 필요한 상황에서 도움이 됩니다.",
-          },
-        ],
-      },
-      {
-        title: "일정/알림",
-        items: [
-          {
-            question: "자녀 일정 관리는 어떤 내용을 담을 수 있나요?",
-            answer:
-              "유치원/학원/병원/특별한 약속 등 아이의 중요한 일정과 할 일을 한 곳에서 정리하고, 필요한 경우 알림으로 놓치지 않도록 도와줍니다.",
-          },
-          {
-            question: "알림이 제때 오지 않을 때가 있어요. 어떻게 해야 하나요?",
-            answer:
-              "21days는 로컬 알림을 기준으로, 이미 지난 시간을 제외한 앞으로 3일 안의 실제 알림 시점만 계산해서 반영해요. 앱을 너무 오랫동안 열지 않으면 최신 루틴이나 일정이 알림에 바로 반영되지 않을 수 있어요.\n알림이 자주 안 온다면, 앱을 한 번 열어서 최신 정보로 업데이트해 보세요.",
-          },
-          {
-            question: "일정이나 루틴을 바꾼 뒤에는 앱을 한 번 열어주세요.",
-            answer:
-              "알림은 앱이 계산해서 기기에 다시 등록하는 방식이라, 일정이나 루틴을 바꾼 뒤에는 앱을 한 번 열어서 최신 정보로 업데이트해 주시는게 가장 좋아요.",
-          },
-          {
-            question:
-              "기기 시간이나 시간대가 바뀌면 알림 시점이 달라질 수 있어요",
-            answer:
-              "기기 시간이나 시간대가 바뀌면 알림 시점이 달라질 수 있어요. 알림 시점을 확인하고 필요하다면 수동으로 조정해 주세요.",
-          },
-          {
-            question:
-              "한 일정에 '반복 설정'과 '기간 설정'을 동시에 사용할 수 있나요?",
-            answer:
-              "아니요, 현재 버전에서는 두 설정을 동시에 사용할 수 없어요. 매주 반복되는 일정은 [반복 일정]으로, 며칠 동안 이어지는 여행이나 캠프 같은 스케줄은 [기간 일정]으로 각각 나누어 등록해주세요.",
-          },
-          {
-            question: "부모가 함께 자녀 일정을 등록하고 수정할 수 있나요?",
-            answer:
-              "현재 버전에서는 주양육자분만 일정을 등록할 수 있고, 초대 코드로 들어온 공동 양육자는 등록한 일정을 실시간으로 확인하는 기능만 제공됩니다. 추후 업데이트를 통해 온 가족이 함께 일정을 편집할 수 있는 프리미엄 멤버십 기능이 추가될 예정입니다.",
           },
         ],
       },
@@ -173,7 +136,7 @@ const copy: Record<
           {
             question: "Is everything free to use?",
             answer:
-              "Family sharing is free for up to 3 children and 2 guardians. Additional children/guardians and premium features may be provided via a paid subscription later.",
+              "Free includes up to 2 children, 2 guardians per child, and 3 routines per child. Pro includes up to 5 children, 6 guardians per child, and 20 routines per child, plus Family Board, board start reminders, and guardian not-started alerts. View monthly and annual pricing on the in-app store subscription screen.",
           },
           {
             question: "How do I invite a co-guardian?",
@@ -194,7 +157,7 @@ const copy: Record<
           {
             question: "Can I create unlimited routines?",
             answer:
-              "Each child can have up to 10 active routines. Keeping a reasonable number of routines helps children focus and feel accomplished. If you hit the limit, remove completed routines and add new ones.",
+              "You can register up to 3 routines per child with Free and up to 20 with Pro. Start small with routines that work for your child.",
           },
           {
             question: "What’s a good way to start when routines are hard?",
@@ -205,46 +168,6 @@ const copy: Record<
             question: "When is the focus timer useful?",
             answer:
               "It helps with short, clear agreements—like staying seated during meals or playing at the playground for the agreed time.",
-          },
-        ],
-      },
-      {
-        title: "Schedules & reminders",
-        items: [
-          {
-            question: "What can I manage in child schedules?",
-            answer:
-              "You can organize key events and tasks—daycare, lessons, appointments, and special plans—and use reminders so you don’t miss what matters.",
-          },
-          {
-            question:
-              "Reminders don’t always arrive on time. What should I do?",
-            answer:
-              "21days uses local notifications and only schedules actual reminder times within the next 3 days (excluding times that already passed). If you haven’t opened the app for a long time, new routines or schedule changes may not be reflected in notifications right away.\nIf reminders are often missing, open the app once to refresh and update your notifications.",
-          },
-          {
-            question:
-              "After changing schedules or routines, please open the app once.",
-            answer:
-              "Notifications are calculated by the app and re-registered on your device. After editing schedules or routines, opening the app once helps ensure notifications are updated with the latest info.",
-          },
-          {
-            question:
-              "Changing your device time or time zone can affect reminder times.",
-            answer:
-              "If your device time or time zone changes, reminder times may shift. Please double-check and adjust reminder times if needed.",
-          },
-          {
-            question:
-              "Can I use both “Recurring Settings” and “Duration Settings” for the same event?",
-            answer:
-              "No, you cannot use both settings at the same time in the current version. Please register weekly recurring events as [Recurring Events] and schedules that span several days, such as trips or camps, as [Duration Events].",
-          },
-          {
-            question:
-              "Can both parents register and edit their children’s schedules together?",
-            answer:
-              "Currently, only the primary caregiver can register schedules, while invited co-caregivers can only view the registered schedules in real-time. Future updates will introduce a premium membership feature that allows the entire family to edit schedules together.",
           },
         ],
       },

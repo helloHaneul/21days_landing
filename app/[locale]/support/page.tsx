@@ -56,7 +56,7 @@ const copy: Record<
     emailLabel: "지원 이메일",
     faqTitle: "자주 묻는 질문",
     faqBody:
-      "로그인, 알림, 가족 공유, 루틴/일정 사용법처럼 자주 묻는 항목은 FAQ에서 먼저 확인하실 수 있습니다.",
+      "로그인, 알림, 가족 공유, 루틴 사용법처럼 자주 묻는 항목은 FAQ에서 먼저 확인하실 수 있습니다.",
     faqCta: "FAQ 보기",
     helpTitle: "지원 가능한 내용",
     formTitle: "이메일 문의 작성",
@@ -76,7 +76,7 @@ const copy: Record<
     formSubmitLabel: "메일 앱에서 문의 작성하기",
     helpItems: [
       "회원가입 및 Google/Apple 로그인 관련 문의",
-      "알림, 일정, 루틴, 포커스 타이머 사용 중 발생한 문제",
+      "알림, 루틴, 포커스 타이머 사용 중 발생한 문제",
       "가족 공유, 초대 코드, 데이터 삭제 및 계정 관련 문의",
       "앱 오류 제보 및 기능 개선 제안",
       "기타",
@@ -104,7 +104,7 @@ const copy: Record<
     emailLabel: "Support email",
     faqTitle: "Frequently asked questions",
     faqBody:
-      "For common topics such as sign-in, reminders, family sharing, and routines or schedules, please check the FAQ first.",
+      "For common topics such as sign-in, reminders, family sharing, and routines, please check the FAQ first.",
     faqCta: "Open FAQ",
     helpTitle: "What we can help with",
     formTitle: "Compose a support email",
@@ -124,7 +124,7 @@ const copy: Record<
     formSubmitLabel: "Compose in mail app",
     helpItems: [
       "Questions about sign-up and Google or Apple sign-in",
-      "Issues with reminders, schedules, routines, or the focus timer",
+      "Issues with reminders, routines, or the focus timer",
       "Questions about family sharing, invite codes, account access, or data deletion",
       "Bug reports and feature suggestions",
       "Other",

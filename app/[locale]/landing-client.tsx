@@ -1,18 +1,12 @@
 "use client";
 
 import React from "react";
-import {
-  CheckCircle2,
-  Timer,
-  Coins,
-  CalendarDays,
-  Users,
-  Star,
-} from "lucide-react";
+import { CheckCircle2, Timer, Coins, Users, Star } from "lucide-react";
 import { motion } from "motion/react";
 import { useLocale } from "next-intl";
 import { usePathname, useRouter } from "next/navigation";
-import {APP_STORE_URL} from "@/lib/download-links";
+import { APP_STORE_URL } from "@/lib/download-links";
+import PricingSection from "./pricing-section";
 
 const videoSrc = "/video.mp4";
 
@@ -108,24 +102,6 @@ const copy = {
     coinsCardTitle: "칭찬 코인",
     coinCardOne: "도전반찬 성공",
     coinCardTwo: "스스로 장난감 정리 성공",
-    feature4Title: (
-      <>
-        하루가 정리되는,
-        <br />
-        자녀 일정 관리
-      </>
-    ),
-    feature4Lead: "할 일·일정·알림을 한 곳에서",
-    feature4Body:
-      "유치원/학원/병원/특별한 일정까지, 아이의 하루를 한 번에 정리해 보세요. 중요한 일정은 알림으로 놓치지 않게 도와드립니다.",
-    feature4ExamplesLabel: "예시",
-    feature4Examples: [
-      "병원/예방접종 일정 챙기기",
-      "학원/숙제 마감 놓치지 않기",
-    ],
-    scheduleCardTitle: "이번 주 일정",
-    scheduleCardItems: ["화 · 치과", "수 · 태권도", "금 · 생일파티"],
-    scheduleCardChip: "알림",
     familyLabel: "Family",
     familyTitle: (
       <>
@@ -143,7 +119,7 @@ const copy = {
       "자녀당 보호자 수 제한 범위 내 협업",
     ],
     familyNote:
-      "기본 가족 공유 기능은 무료로 제공됩니다. (추가 고급 기능은 향후 유료 플랜에서 제공될 수 있어요.)",
+      "Free에서도 자녀 최대 2명, 자녀당 보호자 최대 2명과 함께할 수 있어요.",
     visionTitle: (
       <>
         매일의 작은 칭찬이
@@ -272,28 +248,6 @@ const copy = {
     coinsCardTitle: "Coins",
     coinCardOne: "Tried a new side dish",
     coinCardTwo: "Cleaned up toys on my own",
-    feature4Title: (
-      <>
-        Keep days organized,
-        <br />
-        with child schedules
-      </>
-    ),
-    feature4Lead: "Tasks, events, and reminders in one place",
-    feature4Body:
-      "From daycare and lessons to appointments and special events, organize your child’s week at a glance. Gentle reminders help you stay on track.",
-    feature4ExamplesLabel: "Examples",
-    feature4Examples: [
-      "Keep up with vaccines/appointments",
-      "Never miss lessons or homework deadlines",
-    ],
-    scheduleCardTitle: "This Week",
-    scheduleCardItems: [
-      "Tue · Dentist",
-      "Wed · Taekwondo",
-      "Fri · Birthday party",
-    ],
-    scheduleCardChip: "ON",
     familyLabel: "Family",
     familyTitle: (
       <>
@@ -311,7 +265,7 @@ const copy = {
       "Collaborate within guardian-per-child limits",
     ],
     familyNote:
-      "Basic family sharing is free. (Some advanced features may be part of a paid plan later.)",
+      "Free includes up to 2 children and up to 2 guardians per child.",
     visionTitle: (
       <>
         Small words of praise each day
@@ -376,7 +330,13 @@ export default function LandingClient() {
           <div className='text-2xl font-bold text-orange-500 tracking-tighter'>
             21days
           </div>
-          <div>
+          <div className='flex items-center gap-4 sm:gap-6'>
+            <a
+              href='#pricing'
+              className='text-sm font-semibold text-gray-600 hover:text-orange-600'
+            >
+              {"21days Pro"}
+            </a>
             <button
               className='bg-gray-900 text-white px-6 py-2.5 rounded-full font-medium hover:bg-gray-800 transition-colors'
               onClick={() => {
@@ -691,72 +651,6 @@ export default function LandingClient() {
                   </div>
                 </div>
               </div>
-
-              <div className='flex flex-col lg:flex-row-reverse items-center gap-16'>
-                <div className='lg:w-1/2'>
-                  <div className='w-14 h-14 bg-green-100 rounded-2xl flex items-center justify-center mb-6'>
-                    <CalendarDays className='w-7 h-7 text-green-500' />
-                  </div>
-                  <h4 className='text-3xl md:text-4xl font-bold mb-6 leading-tight'>
-                    {t.feature4Title}
-                  </h4>
-                  <p className='text-lg text-gray-600 leading-relaxed'>
-                    <strong className='text-gray-900 block mb-2 text-xl'>
-                      {t.feature4Lead}
-                    </strong>
-                    {t.feature4Body}
-                  </p>
-                  <div className='mt-6'>
-                    <div className='text-sm font-bold text-gray-500 mb-2'>
-                      {t.feature4ExamplesLabel}
-                    </div>
-                    <div className='flex flex-wrap gap-2'>
-                      {t.feature4Examples.map((item) => (
-                        <span
-                          key={item}
-                          className='inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-sm font-medium text-gray-700'
-                        >
-                          {item}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-                <div className='lg:w-1/2 w-full'>
-                  <div className='aspect-square md:aspect-[4/3] bg-green-50/50 rounded-[40px] border border-green-100 shadow-xl overflow-hidden relative flex items-center justify-center p-8'>
-                    <div className='w-full max-w-sm bg-white rounded-3xl shadow-lg border border-gray-100 p-6'>
-                      <div className='flex items-center justify-between mb-6'>
-                        <div className='font-bold text-lg'>
-                          {t.scheduleCardTitle}
-                        </div>
-                        <div className='text-sm text-green-600 font-bold bg-green-50 px-3 py-1 rounded-full'>
-                          3
-                        </div>
-                      </div>
-                      <div className='space-y-3'>
-                        {t.scheduleCardItems.map((item) => (
-                          <div
-                            key={item}
-                            className='flex items-center justify-between gap-3 p-4 bg-green-50 rounded-2xl'
-                          >
-                            <div className='flex items-center gap-3'>
-                              <div className='w-9 h-9 rounded-2xl bg-white border border-green-100 flex items-center justify-center text-green-600'>
-                                <CalendarDays className='w-5 h-5' />
-                              </div>
-                              <div className='font-medium text-gray-900'>
-                                {item}
-                              </div>
-                            </div>
-                            <div className='text-xs font-bold text-green-700 bg-green-100 px-2.5 py-1 rounded-full'>
-                              {t.scheduleCardChip}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </section>
@@ -795,6 +689,8 @@ export default function LandingClient() {
             </div>
           </div>
         </section>
+
+        <PricingSection locale={locale} />
 
         <section
           id='vision'
