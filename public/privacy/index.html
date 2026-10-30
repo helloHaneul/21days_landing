@@ -311,7 +311,8 @@
 <p>회사는 루틴 시작, 루틴 미시작, 타이머 완료 등 서비스 기능을 제공하기 위해 기기 알림을 사용합니다.</p>
 <p>푸시 알림 전달을 위해 푸시 토큰과 일반 안내 문구가 Expo 및 Google FCM 또는 Apple APNs를 통해 처리됩니다. 알림 내용에는 자녀 이름이나 루틴 이름을 포함하지 않습니다.</p>
 <p>이용자는 기기 설정과 앱의 설정 &gt; 알림 및 권한 설정에서 알림을 관리할 수 있습니다.</p>
-<p>마케팅 푸시 알림은 별도의 수신 동의가 있는 경우에만 발송하며, 같은 화면에서 마케팅 푸시 수신 동의를 철회할 수 있습니다. 마케팅 수신 동의를 거부해도 핵심 서비스 이용에는 제한이 없습니다.</p>
+<p>parentingnow는 별도로 동의한 이용자에게 앱 푸시로 21days 신규 기능 소개, 이벤트 및 Pro 프로모션 등 광고성 정보를 보낼 수 있습니다. 이를 위해 기기 푸시 토큰과 마케팅 푸시 수신 동의 상태를 동의 철회 또는 계정 삭제 시까지 이용합니다. 동의는 선택사항이며 거부해도 서비스 이용에 제한이 없습니다.</p>
+<p>같은 설정 화면에서 언제든 마케팅 동의를 철회할 수 있으며, 철회하면 마케팅 푸시 발송과 해당 목적의 이용을 중단합니다. 루틴·타이머 등 서비스 알림은 별도 설정에 따라 제공되므로, 이에 필요한 푸시 토큰은 마케팅 동의 철회만으로 삭제되지 않을 수 있습니다. 기기의 알림 권한 해제는 동의 철회와 구분됩니다. 자세한 내용은 <a href="/terms/#marketing-consent">광고성 정보 수신 동의 안내</a>에서 확인할 수 있습니다.</p>
 <h2>5. 광고 관련 정보 처리</h2>
 <p>Android에서는 광고를 제공하지 않으며, Google Mobile Ads SDK와 광고 ID 권한을 사용하지 않습니다.</p>
 <p>iOS에서는 광고가 제공되는 이용 환경에 한해 Google AdMob 등 광고 서비스를 사용할 수 있습니다. 광고 서비스는 광고 제공·측정 등을 위해 기기 및 광고 관련 정보를 처리할 수 있습니다.</p>
@@ -555,7 +556,8 @@
 <p>The Company uses device notifications for routine starts, routines not started, timer completion, and other service features.</p>
 <p>Push tokens and generic messages are processed through Expo and Google FCM or Apple APNs to deliver notifications. Notification content does not include child or routine names.</p>
 <p>Manage notifications through device settings and Settings &gt; Notifications and Permissions in the app.</p>
-<p>Marketing push notifications are sent only with separate consent. You may withdraw marketing push consent on the same screen. Declining marketing consent does not restrict core service use.</p>
+<p>With separate consent, parentingnow may send app push advertisements about new 21days features, events, and Pro promotions. Device push tokens and marketing push consent status are used for this purpose until consent is withdrawn or the account is deleted. Consent is optional and declining it does not restrict service use.</p>
+<p>Withdraw marketing consent at any time on the same settings screen. Withdrawal stops marketing push messages and use for that purpose. Routine, timer, and other service notifications follow separate settings, so tokens needed for them may remain after withdrawal. Disabling device notification permission is separate from withdrawing consent. See the <a href="/terms/?lang=en#marketing-consent-en">advertising consent guidance</a> for details.</p>
 <h2>5. Advertising Information</h2>
 <p>Android does not serve ads and does not use the Google Mobile Ads SDK or advertising ID permission.</p>
 <p>On iOS, advertising services such as Google AdMob may be used only in environments where ads are served. Advertising services may process device and advertising information for delivery and measurement.</p>
