@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, type ReactNode } from "react";
 import { ChevronDown } from "lucide-react";
 import { useLocale } from "next-intl";
 import { usePathname, useRouter } from "next/navigation";
@@ -9,7 +9,7 @@ type Locale = "ko" | "en";
 
 type FaqItem = {
   question: string;
-  answer: string;
+  answer: ReactNode;
   link?: { href: string; label: string };
 };
 
@@ -116,6 +116,45 @@ const copy: Record<
             question: "Family Board는 등록 가능한 기기 수 제한이 있나요?",
             answer:
               "계정당 Family Board의 루틴 시작 푸시 알림을 받을 기기는 1대만 지정할 수 있습니다. 새 기기를 Family Board로 등록하면 기존 기기 대신 새 기기에서 알림을 받게 됩니다.",
+          },
+          {
+            question: "부모폰에서 Family Board 기기의 등록을 해제할 수 있나요?",
+            answer: (
+              <div className='space-y-4'>
+                <p>
+                  네. <strong>owner 계정의 미시작 경고 수신 기기로 등록된 부모폰</strong>에서{" "}
+                  <strong>설정 → Family Board → 보드 기기 설정 보기 → 등록된 보드 원격 해제</strong>를 이용해 주세요.
+                </p>
+                <p>
+                  해제하면 해당 보드의 루틴 시작 푸시 알림이 중단됩니다. 부모폰의 미시작 경고 설정은 유지되며, 기존 기기에서 Family Board 화면을 계속 사용하는 것도 가능합니다.
+                </p>
+                <p>
+                  원격 해제 버튼이 보이지 않으면 현재 기기가 부모 미시작 경고 기기로 등록되어 있는지 확인해 주세요.
+                </p>
+              </div>
+            ),
+          },
+          {
+            question: "부모 미시작 경고를 받는 기기를 변경하거나 해제하려면 어떻게 하나요?",
+            answer: (
+              <div className='space-y-4'>
+                <p>
+                  Pro를 이용하는 owner 계정으로 로그인한 뒤,{" "}
+                  <strong>설정 → 알림 및 권한 설정 → 부모 폰 미시작 경고 기기</strong>에서 관리할 수 있습니다.
+                </p>
+                <ul className='list-disc space-y-2 pl-5'>
+                  <li>
+                    <strong>기기 변경:</strong> 새 부모폰에서 ‘이 기기를 부모 폰으로 등록’을 누르면 기존 기기 대신 새 기기로 알림이 연결됩니다. 기존 기기를 사용할 수 없어도 변경할 수 있습니다.
+                  </li>
+                  <li>
+                    <strong>등록 해제:</strong> 현재 등록된 부모폰에서 ‘부모 폰 등록 해제’를 누르세요.
+                  </li>
+                </ul>
+                <p>
+                  부모 미시작 경고는 계정당 1대에서만 받을 수 있으며, 기기 등록에는 알림 권한이 필요합니다. 등록·변경 직후에는 최대 5분 동안 다른 기기로 변경이 제한될 수 있습니다.
+                </p>
+              </div>
+            ),
           },
         ],
       },
@@ -599,9 +638,9 @@ export default function FaqClient() {
                           aria-labelledby={buttonId}
                           className={isOpen ? "px-5 sm:px-6 pb-5" : "hidden"}
                         >
-                          <p className='text-gray-600 leading-relaxed whitespace-pre-line'>
+                          <div className='text-gray-600 leading-relaxed whitespace-pre-line'>
                             {item.answer}
-                          </p>
+                          </div>
                           {item.link && (
                             <a
                               href={item.link.href}
