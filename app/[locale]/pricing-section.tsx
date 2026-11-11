@@ -11,6 +11,7 @@ const copy = {
     ],
     boardTitle: "집 안의 태블릿을 우리 가족의 루틴 보드로.",
     boardBody: "가족 공용 태블릿에서 오늘의 루틴을 확인하고, 아이가 직접 시작·완료 버튼을 누를 수 있어요.",
+    previewLabel: "Family Board 미리보기",
     alertsTitle: "아이에게 시작 알림, 보호자에게 미시작 알림",
     alertsBody: "등록한 Family Board 기기로 루틴 시작 알림을 보내고, 시작 시간으로부터 10분이 지나도록 시작하지 않은 루틴은 보호자 기기로 알려드려요.",
     steps: ["보호자 계정에서 Pro를 구독하세요.", "별도 공용 태블릿에서 해당 계정으로 로그인하고 Family Board 기기로 등록하세요.", "아이가 오늘의 루틴을 확인하고 직접 시작·완료하도록 함께해 주세요."],
@@ -45,6 +46,7 @@ const copy = {
     ],
     boardTitle: "Turn your tablet into a family routine board.",
     boardBody: "Children can see today’s routines on a shared tablet and tap to start and complete them themselves.",
+    previewLabel: "Family Board preview",
     alertsTitle: "Start reminders for children. Not-started alerts for guardians.",
     alertsBody: "Routine start reminders are sent to your registered Family Board. If a routine has not started 10 minutes after its start time, guardians receive an alert on their devices.",
     steps: ["Subscribe to Pro using a guardian account.", "Sign in with that account on a separate shared tablet and register it as a Family Board device.", "Help your child check today’s routines and tap to start and complete them."],
@@ -103,6 +105,18 @@ export default function PricingSection({locale}: Props) {
             </div>
           </div>
           <div>
+            <p className='mb-3 text-sm font-bold text-orange-200'>{t.previewLabel}</p>
+            <video
+              className='mb-8 aspect-[4/3] w-full rounded-2xl border border-white/10 bg-black object-contain shadow-lg'
+              src='/familyboard-preview.mp4'
+              autoPlay
+              loop
+              muted
+              playsInline
+              controls
+              preload='metadata'
+              aria-label={t.previewLabel}
+            />
             <ol className='space-y-6'>
               {t.steps.map((step, index) => (
                 <li key={step} className='flex gap-4'>
