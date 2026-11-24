@@ -16,22 +16,12 @@ const copy = {
     localeLabel: "English",
     heroTitle: (
       <>
-        말 안 듣는 우리 아이,
-        <br />
-        <span className='text-orange-500'>혼내지 않고</span>
-        <br />
-        스스로 움직이게
-        <br />
-        만드는 비밀
+        아이의 하루 루틴을 함께 만드는 앱,{" "}
+        <span className='text-orange-500'>21days</span>
       </>
     ),
-    heroDescription: (
-      <>
-        정답 없는 육아에 지친 부모님들을 위해.
-        <br />
-        잔소리 대신 따뜻한 칭찬으로 21일의 마법을 경험해 보세요.
-      </>
-    ),
+    heroDescription:
+      "Family Board로 루틴을 한눈에 보고, 모은 칭찬 코인은 함께 정한 보상으로 바꿔요.",
     heroCtaIos: "iOS 앱 다운로드",
     heroCtaAndroid: "Android 앱 다운로드",
     introTitle: (
@@ -157,23 +147,12 @@ const copy = {
     localeLabel: "한국어",
     heroTitle: (
       <>
-        The gentle way
-        <br />
-        to help your child
-        <br />
-        <span className='text-orange-500'>move on their own</span>
-        <br />
-        without constant scolding
+        Kids Routine App with{" "}
+        <span className='text-orange-500'>Family Board</span> for Calmer Days
       </>
     ),
-    heroDescription: (
-      <>
-        For parents exhausted by the uncertainty of raising kids.
-        <br />
-        Discover 21 days of change through warm encouragement instead of
-        nagging.
-      </>
-    ),
+    heroDescription:
+      "See today’s routines at a glance on Family Board, and celebrate small wins with praise coins kids can trade for rewards.",
     heroCtaIos: "Download for iOS",
     heroCtaAndroid: "Download for Android",
     introTitle: (
@@ -362,8 +341,8 @@ export default function LandingClient() {
                 transition={{ duration: 0.5 }}
                 className={`font-extrabold tracking-tight mb-6 ${
                   isEnglish
-                    ? "max-w-[11ch] text-4xl sm:text-5xl lg:text-[4.25rem] leading-[1.02]"
-                    : "text-5xl lg:text-7xl leading-[1.15]"
+                    ? "text-balance text-4xl sm:text-5xl lg:text-[4.25rem] leading-[1.02]"
+                    : "text-balance break-keep text-4xl sm:text-5xl lg:text-7xl leading-[1.15]"
                 }`}
               >
                 {t.heroTitle}
