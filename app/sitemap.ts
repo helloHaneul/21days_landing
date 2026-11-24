@@ -3,11 +3,10 @@ import {SITE_URL} from "@/lib/site";
 
 const routes = [
   "",
-  "/ko",
   "/en",
-  "/ko/faq",
+  "/faq",
   "/en/faq",
-  "/ko/support",
+  "/support",
   "/en/support",
   "/account-deletion",
 ];

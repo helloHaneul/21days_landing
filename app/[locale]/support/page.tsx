@@ -75,7 +75,7 @@ const copy: Record<
       "문제가 발생한 상황, 확인하고 싶은 내용, 재현 방법 등을 자세히 적어주세요.",
     formSubmitLabel: "메일 앱에서 문의 작성하기",
     helpItems: [
-      "회원가입 및 Google/Apple 로그인 관련 문의",
+      "회원가입 및 Google·Apple·카카오 로그인 관련 문의",
       "알림, 루틴, 포커스 타이머 사용 중 발생한 문제",
       "가족 공유, 초대 코드, 데이터 삭제 및 계정 관련 문의",
       "앱 오류 제보 및 기능 개선 제안",
@@ -123,7 +123,7 @@ const copy: Record<
       "Describe what happened, what you need help with, and how to reproduce the issue if possible.",
     formSubmitLabel: "Compose in mail app",
     helpItems: [
-      "Questions about sign-up and Google or Apple sign-in",
+      "Questions about sign-up and Google, Apple, or Kakao sign-in",
       "Issues with reminders, routines, or the focus timer",
       "Questions about family sharing, invite codes, account access, or data deletion",
       "Bug reports and feature suggestions",
@@ -140,7 +140,7 @@ const copy: Record<
     ],
     responseTitle: "Response time",
     responseBody:
-      "We review support requests in the order received and usually reply within 3 business days.",
+      "We review support requests in the order received and reply within 3 business days.",
     backHome: "Back to 21days home",
     switchLabel: "한국어",
   },

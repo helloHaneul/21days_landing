@@ -6,6 +6,7 @@ import { motion } from "motion/react";
 import { useLocale } from "next-intl";
 import { usePathname, useRouter } from "next/navigation";
 import { APP_STORE_URL } from "@/lib/download-links";
+import { FREE_LIMITS } from "@/lib/plans";
 import PricingSection from "./pricing-section";
 
 const videoSrc = "/video.mp4";
@@ -119,7 +120,7 @@ const copy = {
       "자녀당 보호자 수 제한 범위 내 협업",
     ],
     familyNote:
-      "Free에서도 자녀 최대 2명, 자녀당 보호자 최대 2명과 함께할 수 있어요.",
+      `Free에서도 자녀 최대 ${FREE_LIMITS.children}명, 자녀당 보호자 최대 ${FREE_LIMITS.guardiansPerChild}명과 함께할 수 있어요.`,
     visionTitle: (
       <>
         매일의 작은 칭찬이
@@ -265,7 +266,7 @@ const copy = {
       "Collaborate within guardian-per-child limits",
     ],
     familyNote:
-      "Free includes up to 2 children and up to 2 guardians per child.",
+      `Free includes up to ${FREE_LIMITS.children} children and up to ${FREE_LIMITS.guardiansPerChild} guardians per child.`,
     visionTitle: (
       <>
         Small words of praise each day
@@ -590,7 +591,10 @@ export default function LandingClient() {
                 </div>
               </div>
 
-              <div className='flex flex-col lg:flex-row items-center gap-16'>
+              <div
+                id='praise-coins'
+                className='scroll-mt-8 flex flex-col lg:flex-row items-center gap-16'
+              >
                 <div className='lg:w-1/2'>
                   <div className='w-14 h-14 bg-yellow-100 rounded-2xl flex items-center justify-center mb-6'>
                     <Coins className='w-7 h-7 text-yellow-500' />
@@ -655,7 +659,7 @@ export default function LandingClient() {
           </div>
         </section>
 
-        <section className='py-24 bg-white'>
+        <section id='family-sharing' className='scroll-mt-8 py-24 bg-white'>
           <div className='max-w-6xl mx-auto px-4 sm:px-6 lg:px-8'>
             <div className='grid gap-10 lg:grid-cols-2 lg:gap-16 items-start'>
               <div>

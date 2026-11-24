@@ -4,6 +4,7 @@ import { useMemo, useState, type ReactNode } from "react";
 import { ChevronDown } from "lucide-react";
 import { useLocale } from "next-intl";
 import { usePathname, useRouter } from "next/navigation";
+import { FREE_LIMITS, PRO_LIMITS, PRO_US_PRICES } from "@/lib/plans";
 
 type Locale = "ko" | "en";
 
@@ -36,17 +37,49 @@ const copy: Record<
     localeEnLabel: "English",
     sections: [
       {
-        title: "Pro·구독",
+        title: "앱 설치 전에",
         items: [
           {
-            question: "Free와 Pro는 무엇이 다른가요?",
+            question: "21days는 무료로 어디까지 쓸 수 있나요?",
             answer:
-              "Free는 자녀 최대 2명, 자녀당 보호자 최대 2명, 자녀당 루틴 최대 3개를 제공합니다. Pro는 자녀 최대 5명, 자녀당 보호자 최대 6명, 자녀당 루틴 최대 20개와 Family Board, 보드 시작 알림·보호자 미시작 알림을 제공합니다.",
+              `무료 플랜에서는 자녀 최대 ${FREE_LIMITS.children}명, 자녀당 보호자 최대 ${FREE_LIMITS.guardiansPerChild}명, 자녀당 루틴 최대 ${FREE_LIMITS.routinesPerChild}개까지 이용할 수 있어요. Pro에서는 자녀 최대 ${PRO_LIMITS.children}명, 자녀당 보호자 최대 ${PRO_LIMITS.guardiansPerChild}명, 자녀당 루틴 최대 ${PRO_LIMITS.routinesPerChild}개로 한도가 늘어나고, Family Board와 보드 시작 알림·보호자 미시작 알림을 이용할 수 있어요.`,
             link: {
               href: "/ko#pricing",
               label: "Free·Pro 비교 보기",
             },
           },
+          {
+            question: "부모 두 명이 같은 아이의 루틴을 볼 수 있나요?",
+            answer:
+              `네, 무료 플랜에서도 부모 두 명이 각자 계정으로 같은 아이의 루틴과 진행 상태를 볼 수 있어요. 한 보호자가 가족 기능에서 초대코드를 만들고, 다른 보호자가 앱에 코드를 입력하면 같은 자녀 프로필에 연결돼요. 무료 플랜은 자녀당 보호자 최대 ${FREE_LIMITS.guardiansPerChild}명, Pro는 최대 ${PRO_LIMITS.guardiansPerChild}명까지 연결할 수 있어요.`,
+            link: {
+              href: "/ko#family-sharing",
+              label: "가족 공유 기능 보기",
+            },
+          },
+          {
+            question: "칭찬 코인은 어떻게 주고 보상으로 바꾸나요?",
+            answer:
+              "아이가 루틴을 끝내거나 칭찬할 행동을 하면 보호자가 코인을 주고, 아이는 모은 코인을 보상으로 바꿀 수 있어요. 어떤 보상을 받을지, 코인이 몇 개 필요한지는 아이와 미리 정해요. 예를 들어 장난감을 정리하면 코인 5개를 주고, 20개가 모이면 주말에 함께 볼 영화를 고르는 식이에요.",
+            link: {
+              href: "/ko#praise-coins",
+              label: "칭찬 코인 활용 예시 보기",
+            },
+          },
+          {
+            question: "Family Board는 어떤 기기와 플랜에서 쓸 수 있나요?",
+            answer:
+              "Family Board는 Pro에서 이용할 수 있고, 가족 공용 iPad나 Android 태블릿을 권장해요. 보호자 휴대폰과 별도로 사용하는 태블릿에서 Pro 이용 중인 보호자 계정으로 로그인하고 Family Board 기기로 등록해 주세요. 등록하면 아이가 오늘의 루틴을 보고 직접 시작하거나 완료할 수 있어요.",
+            link: {
+              href: "/ko#family-board",
+              label: "Family Board 미리보기 및 설정 방법",
+            },
+          },
+        ],
+      },
+      {
+        title: "Pro·구독",
+        items: [
           {
             question: "보호자마다 Pro를 따로 구독해야 하나요?",
             answer:
@@ -55,7 +88,7 @@ const copy: Record<
           {
             question: "월간과 연간 구독은 기능이 다른가요?",
             answer:
-              "두 구독은 동일한 Pro 기능을 제공하며 결제 주기만 다릅니다. 미국 스토어 기준 월간 US$1.99, 연간 US$19.99이며 자동 갱신됩니다. 국가·지역·스토어에 따라 가격과 통화가 다를 수 있으니 실제 금액과 결제 조건은 앱 내 구독 화면에서 확인해 주세요.",
+              `두 구독은 동일한 Pro 기능을 제공하며 결제 주기만 다릅니다. 미국 스토어 기준 월간 ${PRO_US_PRICES.monthly}, 연간 ${PRO_US_PRICES.annual}이며 자동 갱신됩니다. 국가·지역·스토어에 따라 가격과 통화가 다를 수 있으니 실제 금액과 결제 조건은 앱 내 구독 화면에서 확인해 주세요.`,
           },
           {
             question: "기기 변경·재설치 시 구매 복원 경로는 무엇인가요?",
@@ -81,18 +114,13 @@ const copy: Record<
             question:
               "구독 만료 이후에는 Free 한도를 초과한 자녀·루틴은 어떻게 처리되나요?",
             answer:
-              "구독이 만료되어도 등록한 자녀·루틴과 기존 기록은 삭제되지 않습니다. 다만 계속 사용할 수 있는 범위는 Free 한도인 자녀 최대 2명, 자녀별 활성 루틴 최대 3개로 제한됩니다.",
+              `구독이 만료되어도 등록한 자녀·루틴과 기존 기록은 삭제되지 않습니다. 다만 계속 사용할 수 있는 범위는 Free 한도인 자녀 최대 ${FREE_LIMITS.children}명, 자녀별 활성 루틴 최대 ${FREE_LIMITS.routinesPerChild}개로 제한됩니다.`,
           },
         ],
       },
       {
         title: "Family Board·알림",
         items: [
-          {
-            question: "Family Board는 어떻게 시작하나요?",
-            answer:
-              "보호자 계정에서 Pro를 구독한 뒤, 별도 공용 태블릿에서 해당 계정으로 로그인하고 Family Board 기기로 등록해 주세요. 아이가 오늘의 루틴을 확인하고 직접 시작·완료 버튼을 누를 수 있습니다. 태블릿 사용을 권장합니다.",
-          },
           {
             question: "Family Board를 쓰려면 아이도 계정을 만들어야 하나요?",
             answer:
@@ -101,7 +129,7 @@ const copy: Record<
           {
             question: "시작 알림과 미시작 알림은 어디로 오나요?",
             answer:
-              "Pro의 루틴 시작 알림은 등록한 Family Board 기기로 전달됩니다. 시작 시간으로부터 10분이 지나도록 루틴을 시작하지 않으면 보호자 기기로 미시작 알림을 보내요. Free의 루틴 알림은 대표 양육자 기기의 로컬 알림으로 제공됩니다.",
+              "Pro의 루틴 시작 알림은 등록한 Family Board 기기로 전달됩니다. 시작 시간으로부터 10분이 지나도록 루틴을 시작하지 않으면 미시작 경고 수신용으로 등록한 부모폰으로 알림을 보내요. Free의 루틴 알림은 대표 양육자 기기의 로컬 알림으로 제공됩니다.",
           },
           {
             question: "Family Board나 보호자 기기에 알림이 오지 않아요.",
@@ -167,11 +195,6 @@ const copy: Record<
               "자녀 정보는 공개 검색·열람되지 않습니다. 자녀를 등록·관리하는 보호자와 초대를 수락해 연결된 보호자가 권한 범위 안에서 이용합니다. 다만 Family Board 공용 화면은 함께 사용하는 가족 구성원에게 보일 수 있어요.",
           },
           {
-            question: "공동 보호자는 어떻게 초대하나요?",
-            answer:
-              "가족 기능에서 초대코드를 생성해 상대방에게 전달하세요. 초대받은 사용자는 초대코드를 입력하여 자녀 데이터를 함께 관리할 수 있습니다.",
-          },
-          {
             question: "초대코드가 작동하지 않을 때가 있어요.",
             answer:
               "초대코드는 만료되었거나, 사용 가능 횟수를 초과했거나, 철회된 상태일 수 있어요. 코드가 맞는데도 연결되지 않으면 새 초대코드를 다시 받아 시도해주세요.",
@@ -184,7 +207,7 @@ const copy: Record<
           {
             question: "루틴은 무제한으로 등록해서 사용할 수 있나요?",
             answer:
-              "자녀당 루틴은 Free에서 최대 3개, Pro에서 최대 20개를 등록할 수 있어요. 아이에게 맞는 루틴부터 조금씩 시작해 보세요.",
+              `자녀당 루틴은 Free에서 최대 ${FREE_LIMITS.routinesPerChild}개, Pro에서 최대 ${PRO_LIMITS.routinesPerChild}개를 등록할 수 있어요. 아이에게 맞는 루틴부터 조금씩 시작해 보세요.`,
           },
           {
             question: "루틴이 잘 안 지켜질 때는 어떻게 시작하면 좋을까요?",
@@ -297,17 +320,49 @@ const copy: Record<
     localeEnLabel: "English",
     sections: [
       {
-        title: "Pro & subscriptions",
+        title: "Before you install",
         items: [
           {
-            question: "What is the difference between Free and Pro?",
+            question: "How much can I do with 21days for free?",
             answer:
-              "Free includes up to 2 children, 2 guardians per child, and 3 routines per child. Pro includes up to 5 children, 6 guardians per child, and 20 routines per child, plus Family Board, board start reminders, and guardian not-started alerts.",
+              `The Free plan supports up to ${FREE_LIMITS.children} children, ${FREE_LIMITS.guardiansPerChild} guardians per child, and ${FREE_LIMITS.routinesPerChild} routines per child. Pro raises those limits to ${PRO_LIMITS.children} children, ${PRO_LIMITS.guardiansPerChild} guardians per child, and ${PRO_LIMITS.routinesPerChild} routines per child. It also includes Family Board, board start reminders, and alerts for guardians when a routine hasn’t started.`,
             link: {
               href: "/en#pricing",
               label: "Compare Free and Pro",
             },
           },
+          {
+            question: "Can two parents see the same child’s routines?",
+            answer:
+              `Yes, two parents can use their own accounts to see the same child’s routines and progress on the Free plan. One guardian creates an invite code in the family section, and the other enters it in the app to connect to the same child profile. Free supports up to ${FREE_LIMITS.guardiansPerChild} guardians per child, and Pro supports up to ${PRO_LIMITS.guardiansPerChild}.`,
+            link: {
+              href: "/en#family-sharing",
+              label: "See how family sharing works",
+            },
+          },
+          {
+            question: "How do I give praise coins and redeem them for rewards?",
+            answer:
+              "Guardians can give praise coins when a child finishes a routine or does something worth celebrating, and the child can trade saved coins for a reward. Agree with your child ahead of time on the reward and how many coins it takes. For example, give five coins for putting toys away and let your child choose the weekend family movie when they save 20.",
+            link: {
+              href: "/en#praise-coins",
+              label: "See examples of praise coins",
+            },
+          },
+          {
+            question: "Which devices and plans support Family Board?",
+            answer:
+              "Family Board is included with Pro, and we recommend using a shared iPad or Android tablet. On a tablet separate from the guardian’s phone, sign in with a guardian account that has Pro and register the tablet as a Family Board device. Once it’s registered, your child can see today’s routines and start and complete them on the board.",
+            link: {
+              href: "/en#family-board",
+              label: "Preview Family Board and see how to set it up",
+            },
+          },
+        ],
+      },
+      {
+        title: "Pro & subscriptions",
+        items: [
           {
             question: "Does each guardian need a separate Pro subscription?",
             answer:
@@ -317,7 +372,17 @@ const copy: Record<
             question:
               "Do monthly and annual subscriptions include different features?",
             answer:
-              "Both include the same Pro features; only the billing interval differs. US store prices are US$1.99 monthly and US$19.99 annually, with automatic renewal. Prices and currencies may vary by country, region, and store. Check the in-app subscription screen for your actual price and billing terms.",
+              `Both include the same Pro features and differ in billing interval. US store prices are ${PRO_US_PRICES.monthly} monthly and ${PRO_US_PRICES.annual} annually, with automatic renewal. Prices and currencies may vary by country, region, and store. Check the in-app subscription screen for your actual price and billing terms.`,
+          },
+          {
+            question: "How do I restore Pro after switching devices or reinstalling the app?",
+            answer:
+              "Sign in with the 21days account you subscribed with. If Pro does not appear, go to Settings → View Plans → Restore Purchases. Use the same Apple Account or Google Account you used to pay.",
+          },
+          {
+            question: "Can I use Pro on an iOS parent phone and an Android Family Board tablet?",
+            answer:
+              "Yes. Sign in with the same 21days account on iOS and Android to use your active Pro subscription on both devices. One purchase covers both platforms. Manage billing, renewal, and cancellation in the store where you first subscribed.",
           },
           {
             question: "How do I cancel Pro?",
@@ -328,16 +393,16 @@ const copy: Record<
               label: "Subscription and cancellation guidance",
             },
           },
+          {
+            question: "What happens to children and routines above the Free limits when Pro expires?",
+            answer:
+              `Your child profiles, routines, and existing records are kept when Pro expires. You can continue using up to ${FREE_LIMITS.children} child profiles and up to ${FREE_LIMITS.routinesPerChild} active routines per child under the Free plan.`,
+          },
         ],
       },
       {
         title: "Family Board & notifications",
         items: [
-          {
-            question: "How do I get started with Family Board?",
-            answer:
-              "Subscribe to Pro using a guardian account, sign in with that account on a separate shared tablet, and register it as a Family Board device. Your child can check today’s routines and tap to start and complete them. A tablet is recommended.",
-          },
           {
             question:
               "Does my child need a separate account to use Family Board?",
@@ -347,7 +412,7 @@ const copy: Record<
           {
             question: "Where are start reminders and not-started alerts sent?",
             answer:
-              "Pro routine start reminders go to the registered Family Board device. If a routine has not started 10 minutes after its start time, guardians receive an alert on their devices. Free routine reminders are local notifications on the primary caregiver’s device.",
+              "Pro routine start reminders go to the registered Family Board device. If a routine has not started 10 minutes after its start time, an alert goes to the parent phone registered to receive not-started alerts. Free routine reminders are local notifications on the primary caregiver’s device.",
           },
           {
             question:
@@ -359,6 +424,50 @@ const copy: Record<
               label: "Contact support",
             },
           },
+          {
+            question: "How many Family Board devices can receive routine start reminders?",
+            answer:
+              "You can designate one Family Board device per account to receive routine start push notifications. Registering a new device sends those notifications to the new device.",
+          },
+          {
+            question: "Can I unregister a Family Board device from my parent phone?",
+            answer: (
+              <div className='space-y-4'>
+                <p>
+                  Yes. On the parent phone registered to receive not-started alerts for the owner account, go to{" "}
+                  <strong>Settings → Family Board → View Board Device Settings → Remotely Unregister Board</strong>.
+                </p>
+                <p>
+                  This stops routine start push notifications on that board. The parent phone keeps its not-started alert settings, and the previous device can still display the Family Board screen.
+                </p>
+                <p>
+                  If the remote unregister button is missing, check that your current device is registered to receive parent not-started alerts.
+                </p>
+              </div>
+            ),
+          },
+          {
+            question: "How do I switch or unregister the phone that receives not-started alerts?",
+            answer: (
+              <div className='space-y-4'>
+                <p>
+                  Sign in with the owner account that has Pro and go to{" "}
+                  <strong>Settings → Notifications & Permissions → Parent Phone for Not-Started Alerts</strong>.
+                </p>
+                <ul className='list-disc space-y-2 pl-5'>
+                  <li>
+                    <strong>Switch devices.</strong> On the new phone, tap “Register This Device as the Parent Phone” to route alerts to it. You can do this even if you no longer have access to the previous phone.
+                  </li>
+                  <li>
+                    <strong>Unregister a device.</strong> On the currently registered phone, tap “Unregister Parent Phone.”
+                  </li>
+                </ul>
+                <p>
+                  One device per account can receive these alerts, and registration requires notification permission. After registering or changing the phone, you may need to wait up to 5 minutes to switch again.
+                </p>
+              </div>
+            ),
+          },
         ],
       },
       {
@@ -368,11 +477,6 @@ const copy: Record<
             question: "Is my child’s information public?",
             answer:
               "Child information is not publicly searchable or viewable. The managing guardian and guardians connected through accepted invitations can access it within their permissions. Family members using or viewing a shared Family Board screen may see the information displayed.",
-          },
-          {
-            question: "How do I invite a co-guardian?",
-            answer:
-              "In Family features, create an invite code and share it. The invited user can enter the code in the app to manage the same child’s data together.",
           },
           {
             question:
@@ -388,7 +492,7 @@ const copy: Record<
           {
             question: "Can I create unlimited routines?",
             answer:
-              "You can register up to 3 routines per child with Free and up to 20 with Pro. Start small with routines that work for your child.",
+              `You can register up to ${FREE_LIMITS.routinesPerChild} routines per child with Free and up to ${PRO_LIMITS.routinesPerChild} with Pro. Start small with routines that work for your child.`,
           },
           {
             question: "What’s a good way to start when routines are hard?",

@@ -21,12 +21,15 @@ export const NAVER_ANALYTICS_ID =
   process.env.NEXT_PUBLIC_NAVER_ANALYTICS_ID || "";
 
 export function getLocaleAlternates(pathname: string) {
+  const ko = pathname.replace(/^\/(ko|en)(?=\/|$)/, "") || "/";
+  const en = pathname.replace(/^\/ko(?=\/|$)/, "/en");
+
   return {
-    canonical: pathname,
+    canonical: pathname === en ? en : ko,
     languages: {
-      ko: pathname.replace(/^\/en/, "/ko"),
-      en: pathname.replace(/^\/ko/, "/en"),
-      "x-default": pathname.replace(/^\/en/, "/ko"),
+      ko,
+      en,
+      "x-default": ko,
     },
   };
 }

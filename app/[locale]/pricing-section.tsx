@@ -1,3 +1,5 @@
+import { FREE_LIMITS, PRO_LIMITS, PRO_US_PRICES } from "@/lib/plans";
+
 type Props = {locale: "ko" | "en"};
 
 const copy = {
@@ -5,31 +7,31 @@ const copy = {
     title: "아이의 루틴, 온 가족이 함께.",
     intro: "21days Pro로 더 많은 자녀와 보호자를 연결하고, 집 안의 태블릿을 아이가 직접 사용하는 Family Board로 바꿔보세요.",
     benefits: [
-      ["자녀 최대 5명", "자녀별 프로필과 루틴을 한곳에서 확인하세요."],
-      ["자녀당 루틴 최대 20개", "아침 준비부터 저녁 정리까지, 아이의 일상에 맞는 루틴을 구성하세요."],
-      ["자녀당 보호자 최대 6명", "부모와 조부모 등 함께 돌보는 보호자가 같은 자녀의 루틴과 진행 상태를 확인할 수 있어요."],
+      [`자녀 최대 ${PRO_LIMITS.children}명`, "자녀별 프로필과 루틴을 한곳에서 확인하세요."],
+      [`자녀당 루틴 최대 ${PRO_LIMITS.routinesPerChild}개`, "아침 준비부터 저녁 정리까지, 아이의 일상에 맞는 루틴을 구성하세요."],
+      [`자녀당 보호자 최대 ${PRO_LIMITS.guardiansPerChild}명`, "부모와 조부모 등 함께 돌보는 보호자가 같은 자녀의 루틴과 진행 상태를 확인할 수 있어요."],
     ],
     boardTitle: "집 안의 태블릿을 우리 가족의 루틴 보드로.",
     boardBody: "가족 공용 태블릿에서 오늘의 루틴을 확인하고, 아이가 직접 시작·완료 버튼을 누를 수 있어요.",
     previewLabel: "Family Board 미리보기",
     alertsTitle: "아이에게 시작 알림, 보호자에게 미시작 알림",
-    alertsBody: "등록한 Family Board 기기로 루틴 시작 알림을 보내고, 시작 시간으로부터 10분이 지나도록 시작하지 않은 루틴은 보호자 기기로 알려드려요.",
+    alertsBody: "등록한 Family Board 기기로 루틴 시작 알림을 보내요. 시작 시간으로부터 10분이 지나도록 루틴을 시작하지 않으면 미시작 경고 수신용으로 등록한 부모폰으로 알림을 보내요.",
     steps: ["보호자 계정에서 Pro를 구독하세요.", "별도 공용 태블릿에서 해당 계정으로 로그인하고 Family Board 기기로 등록하세요.", "아이가 오늘의 루틴을 확인하고 직접 시작·완료하도록 함께해 주세요."],
     boardNote: "Family Board는 태블릿 사용을 권장합니다. 푸시 알림을 받으려면 인터넷 연결과 알림 권한이 필요합니다.",
     comparison: "Free와 Pro, 한눈에 비교하세요.",
     feature: "기능",
     rows: [
-      ["등록 가능한 자녀", "최대 2명", "최대 5명"],
-      ["자녀당 보호자", "최대 2명", "최대 6명"],
-      ["자녀당 루틴", "최대 3개", "최대 20개"],
+      ["등록 가능한 자녀", `최대 ${FREE_LIMITS.children}명`, `최대 ${PRO_LIMITS.children}명`],
+      ["자녀당 보호자", `최대 ${FREE_LIMITS.guardiansPerChild}명`, `최대 ${PRO_LIMITS.guardiansPerChild}명`],
+      ["자녀당 루틴", `최대 ${FREE_LIMITS.routinesPerChild}개`, `최대 ${PRO_LIMITS.routinesPerChild}개`],
       ["Family Board", "미제공", "사용 가능"],
       ["루틴 알림", "대표 양육자 기기의 로컬 알림", "보드 시작 알림 · 보호자 미시작 알림"],
     ],
     plansTitle: "가족의 일상에 맞게 선택하세요.",
     monthly: "Pro 월간",
     annual: "Pro 연간",
-    monthlyPrice: "US$1.99 / 월",
-    annualPrice: "US$19.99 / 년",
+    monthlyPrice: `${PRO_US_PRICES.monthly} / 월`,
+    annualPrice: `${PRO_US_PRICES.annual} / 년`,
     priceNotice: "미국 스토어 기준 가격입니다. 국가·지역 및 스토어에 따라 가격과 통화가 다를 수 있으며, 실제 결제 금액은 앱 내 구독 화면에서 확인할 수 있습니다.",
     monthlyNote: "매월 자동 갱신",
     annualNote: "매년 자동 갱신",
@@ -40,31 +42,31 @@ const copy = {
     title: "Your child’s routines. Your whole family, together.",
     intro: "Connect more children and guardians with 21days Pro, and turn a shared tablet into a Family Board your child can use independently.",
     benefits: [
-      ["Up to 5 children", "See each child’s profile and routines in one place."],
-      ["Up to 20 routines per child", "Build routines that fit your child’s day, from getting ready to tidying up."],
-      ["Up to 6 guardians per child", "Parents, grandparents, and other caregivers can follow the same child’s routines and progress."],
+      [`Up to ${PRO_LIMITS.children} children`, "See each child’s profile and routines in one place."],
+      [`Up to ${PRO_LIMITS.routinesPerChild} routines per child`, "Build routines that fit your child’s day, from getting ready to tidying up."],
+      [`Up to ${PRO_LIMITS.guardiansPerChild} guardians per child`, "Parents, grandparents, and other caregivers can follow the same child’s routines and progress."],
     ],
     boardTitle: "Turn your tablet into a family routine board.",
     boardBody: "Children can see today’s routines on a shared tablet and tap to start and complete them themselves.",
     previewLabel: "Family Board preview",
     alertsTitle: "Start reminders for children. Not-started alerts for guardians.",
-    alertsBody: "Routine start reminders are sent to your registered Family Board. If a routine has not started 10 minutes after its start time, guardians receive an alert on their devices.",
+    alertsBody: "Routine start reminders go to your registered Family Board. If a routine has not started 10 minutes after its start time, an alert goes to the parent phone registered to receive not-started alerts.",
     steps: ["Subscribe to Pro using a guardian account.", "Sign in with that account on a separate shared tablet and register it as a Family Board device.", "Help your child check today’s routines and tap to start and complete them."],
     boardNote: "A tablet is recommended for Family Board. Push notifications require an internet connection and notification permission.",
     comparison: "Compare Free and Pro at a glance.",
     feature: "Feature",
     rows: [
-      ["Children", "Up to 2", "Up to 5"],
-      ["Guardians per child", "Up to 2", "Up to 6"],
-      ["Routines per child", "Up to 3", "Up to 20"],
+      ["Children", `Up to ${FREE_LIMITS.children}`, `Up to ${PRO_LIMITS.children}`],
+      ["Guardians per child", `Up to ${FREE_LIMITS.guardiansPerChild}`, `Up to ${PRO_LIMITS.guardiansPerChild}`],
+      ["Routines per child", `Up to ${FREE_LIMITS.routinesPerChild}`, `Up to ${PRO_LIMITS.routinesPerChild}`],
       ["Family Board", "Not included", "Included"],
       ["Routine notifications", "Local reminders on the primary caregiver’s device", "Board start reminders · guardian not-started alerts"],
     ],
     plansTitle: "Choose what fits your family.",
     monthly: "Pro Monthly",
     annual: "Pro Annual",
-    monthlyPrice: "US$1.99 / month",
-    annualPrice: "US$19.99 / year",
+    monthlyPrice: `${PRO_US_PRICES.monthly} / month`,
+    annualPrice: `${PRO_US_PRICES.annual} / year`,
     priceNotice: "Prices shown are for the US store. Prices and currencies may vary by country, region, and store. See the in-app subscription screen for the actual amount charged.",
     monthlyNote: "Renews monthly",
     annualNote: "Renews annually",
@@ -94,7 +96,10 @@ export default function PricingSection({locale}: Props) {
           ))}
         </div>
 
-        <div className='mt-6 grid gap-10 rounded-[32px] bg-gray-900 p-7 text-white sm:p-10 lg:grid-cols-2 lg:gap-14'>
+        <div
+          id='family-board'
+          className='scroll-mt-8 mt-6 grid gap-10 rounded-[32px] bg-gray-900 p-7 text-white sm:p-10 lg:grid-cols-2 lg:gap-14'
+        >
           <div>
             <p className='mb-4 text-sm font-bold tracking-wide text-orange-300'>Family Board · Pro</p>
             <h3 className='text-3xl font-bold leading-tight'>{t.boardTitle}</h3>
